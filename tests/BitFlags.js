@@ -8,7 +8,7 @@ describe('BitFlags', () => {
 
 	it('should only allow less than 32 flags', () => {
 		expect(() => {
-			new BitFlags(...'flag'.repeat(32).split(''));
+			new BitFlags(...'flag '.repeat(32).split(' '));
 		}).to.throw(Error);
 	});
 

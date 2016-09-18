@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 const { describe, it } = global;
-import Enum from '../src/BitFlags';
+import Enum from '../src/Enum';
 
 describe('Enum', () => {
 	const flagArray = ['ONE', 'TWO', 'THREE', 'FOUR'];
@@ -35,18 +35,21 @@ describe('Enum', () => {
 			flags[flagArray[0]]++;
 		}).to.throw(TypeError);
 
-		const value = flags[flagArray[0]];
-		delete flags[flagArray[0]];
-		expect(flags[flagArray[0]]).to.equal(value);
+		expect(() => {
+			delete flags[flagArray[0]];
+		}).to.throw(TypeError);
 	});
 
-	it('should be iterable', () => {
+	describe('should be iterable', () => {
 		let i = 0;
 
-		for (const flag of flags) {
-			expect(flag).to.be.a('string');
+		for (const flag in flags) {
 			expect(flag).to.equal(flagArray[i]);
 			i++;
+		}
+
+		for (const value of flags) {
+			expect(value).to.not.be.a('string');
 		}
 	});
 
