@@ -33,7 +33,7 @@
     "eslint-config-xo": "^0.15.0",
     "eslint-plugin-import": "^1.4.0",
     "eslint-plugin-babel": "^3.3.0",
-    "mocha": "^2.4.5",
+    "mocha": "^3.0.2",
     "rimraf": "^2.5.2"
   },
   "dependencies": {
@@ -44,17 +44,16 @@
       "es2015"
     ],
     "plugins": [
-      "transform-runtime",
-      "transform-es2015-modules-umd"
+      "transform-runtime"
     ]
   },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "xo/esnext",
     "rules": {
-      "no-unused-vars": "warn",
-      "space-before-function-paren": "off",
-      "babel/object-curly-spacing": ["error", "always", { "objectsInObjects": false }]
+      "no-unused-vars": 1,
+      "space-before-function-paren": 0,
+      "babel/object-curly-spacing": [2, "always", { "objectsInObjects": false }]
     },
     "env": {
       "mocha": true
