@@ -4,11 +4,14 @@
  */
 class EnumBase {
 	constructor() {
-		this.flags = {};
+		Object.defineProperty(this, 'length', {
+			value: 0,
+			writable: true
+		});
 	}
 
-	get length() {
-		return Object.keys(this.flags).length;
+	static fromArray(array) {
+		return new this(...array);
 	}
 
 	toString() {
@@ -18,19 +21,17 @@ class EnumBase {
 	toJSON() {}
 
 	forEach(callback) {
-		for (const flag of this) {
-			callback(flag, this[flag]);
-		}
+		[...this].forEach(callback);
 	}
 
 	*[Symbol.iterator]() {
-		for (const flag of Object.keys(this.flags)) {
-			yield flag;
+		for (const value of Object.values(this)) {
+			yield value;
 		}
 	}
 
 	[Symbol.hasInstance](instance) {
-		return Object.values(this.flags).includes(instance);
+		return [...this].includes(instance);
 	}
 }
 

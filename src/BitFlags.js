@@ -1,34 +1,37 @@
 import EnumBase from './EnumBase';
 import EnumValue from './EnumValue';
-import EnumProxy from './EnumProxy';
 
 class BitFlags extends EnumBase {
 	/**
 	 * @constructor
 	 * @throws TODO
-	 * @param {...String} [flags]
+	 * @param {...String} keys
 	 */
-	constructor(...flags) {
+	constructor(...keys) {
 		super();
 
-		if (flags.length > 31) {
+		if (keys.length > 31) {
 			throw new Error('BitFlags is limited to 31 flags.');
 		}
 
-		let value = 1;
+		const flags = {};
+		let bitValue = 1;
 
-		for (const flag of flags) {
-			this.flags[flag] = new EnumValue(flag, value);
-			value <<= 1;
+		for (const flag of keys) {
+			flags[flag] = new EnumValue(flag, bitValue);
+
+			Object.defineProperty(this, flag, {
+				enumerable: true,
+				get() {
+					return flags[flag];
+				}
+			});
+
+			bitValue <<= 1;
+			this.length++;
 		}
 
 		Object.freeze(this);
-		Object.freeze(this.flags);
-		return new Proxy(this, EnumProxy);
-	}
-
-	static fromArray(array) {
-		return new BitFlags(...array);
 	}
 }
 
