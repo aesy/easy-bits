@@ -1,25 +1,32 @@
 import EnumBase from './EnumBase';
 import EnumValue from './EnumValue';
-import EnumProxy from './EnumProxy';
 
 class Enum extends EnumBase {
 	/**
 	 * @constructor
-	 * @param {...String} [flags]
+	 * @param {...String} keys
 	 */
-	constructor(...flags) {
+	constructor(...keys) {
 		super();
 
-		let value = 1;
+		const flags = {};
+		let bitValue = 1;
 
-		for (const flag of flags) {
-			this.flags[flag] = new EnumValue(flag, value);
-			value++;
+		for (const flag of keys) {
+			flags[flag] = new EnumValue(flag, bitValue);
+
+			Object.defineProperty(this, flag, {
+				enumerable: true,
+				get() {
+					return flags[flag];
+				}
+			});
+
+			bitValue++;
+			this.length++;
 		}
 
-		Object.freeze(this.flags);
 		Object.freeze(this);
-		return new Proxy(this, EnumProxy);
 	}
 
 	// for (const flag of flags) {
@@ -40,10 +47,6 @@ class Enum extends EnumBase {
 	// 		bitValue++;
 	// 	}
 	// }
-
-	static fromArray(array) {
-		return new Enum(...array);
-	}
 }
 
 export default Enum;
