@@ -1,6 +1,7 @@
-import { expect } from 'chai';
 const { describe, it } = global;
+import { expect } from 'chai';
 import Enum from '../src/Enum';
+import EnumValue from '../src/EnumValue';
 
 describe('Enum', () => {
 	const flagArray = ['ONE', 'TWO', 'THREE', 'FOUR'];
@@ -22,6 +23,40 @@ describe('Enum', () => {
 		});
 	});
 
+	describe('#has()', () => {
+		it('should return a boolean', () => {
+			expect(flags.has(0)).to.be.a('boolean');
+		});
+
+		it('should indicate whether input flag belong to this', () => {
+			expect(flags.has(new EnumValue('name', 1))).to.equal(false);
+			expect(flags.has(flags[flagArray[0]])).to.equal(true);
+		});
+	});
+
+	// TODO
+	describe('#fromArray()', () => {});
+	describe('#fromJSON()', () => {});
+	describe('#toJSON()', () => {});
+
+	describe('#forEach()', () => {
+		it('should iterate every value-key pair but where value is 0', () => {
+			let i = 0;
+
+			flags.forEach((value, key, obj) => {
+				expect(obj).to.equal(flags);
+				expect(key).to.equal(flagArray[i]);
+				expect(value).to.satisfy((val) => {
+					return (typeof val === 'number') || (val instanceof EnumValue);
+				});
+				expect(Number(value)).to.not.equal(0);
+				i++;
+			});
+
+			expect(i).to.equal(flagArray.length);
+		});
+	});
+
 	it('should not allow properties to be changed, removed or added', () => {
 		expect(() => {
 			flags.flags.newProp = true;
@@ -40,6 +75,12 @@ describe('Enum', () => {
 		}).to.throw(TypeError);
 	});
 
+	it('should not allow accessing nonexistant properties', () => {
+		expect(() => {
+			const notDefined = flags.DOESNT_EXIST;
+		}).to.throw(TypeError);
+	});
+
 	describe('should be iterable', () => {
 		let i = 0;
 
@@ -48,8 +89,13 @@ describe('Enum', () => {
 			i++;
 		}
 
+		expect(i).to.equal(flagArray.length);
+
 		for (const value of flags) {
-			expect(value).to.not.be.a('string');
+			expect(value).to.satisfy((val) => {
+				return (typeof val === 'number') || (val instanceof EnumValue);
+			});
+			expect(Number(value)).to.not.equal(0);
 		}
 	});
 

@@ -1,5 +1,5 @@
-import { expect } from 'chai';
 const { describe, it } = global;
+import { expect } from 'chai';
 import EnumValue from '../src/EnumValue';
 
 describe('EnumValue', () => {
@@ -68,7 +68,7 @@ describe('EnumValue', () => {
 	});
 
 	describe('#equals()', () => {
-		it('should only equal its\' reference', () => {
+		it('should only equal itself', () => {
 			expect(enumValue.equals(enumValue)).to.equal(true);
 			expect(enumValue.equals(new EnumValue(name, value))).to.equal(false);
 		});
@@ -82,7 +82,7 @@ describe('EnumValue', () => {
 	});
 
 	describe('#value', () => {
-		it('should be the proper value', () => {
+		it('should equal the proper value', () => {
 			expect(enumValue.value).to.be.a('number');
 			expect(enumValue.value).to.equal(value);
 			expect(enumValue.value).to.equal(enumValue.valueOf());
