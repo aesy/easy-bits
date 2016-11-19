@@ -10,10 +10,10 @@
   },
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist/*",
-    "build": "babel src --minified -d dist",
-    "build:dev": "babel src -s inline -d dist",
-    "build:watch": "npm run build:dev -- -w",
+    "clean": "rimraf dist",
+    "build": "npm run clean & webpack --optimize-minimize --optimize-occurence-order",
+    "build:dev": "webpack --debug --devtool inline-source-map --output-pathinfo",
+    "build:watch": "npm run build:dev -- --watch",
     "lint": "eslint src",
     "lint:fix": "npm run lint -- --fix",
     "test": "mocha tests --compilers js:babel-register",
@@ -22,38 +22,37 @@
     "run": "npm run lint && node dist"
   },
   "devDependencies": {
-    "babel-cli": "^6.7.5",
-    "babel-core": "^6.7.6",
-    "babel-eslint": "^6.0.2",
-    "babel-plugin-transform-runtime": "^6.7.5",
-    "babel-polyfill": "^6.7.4",
-    "babel-preset-es2015": "^6.6.0",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-polyfill": "^6.0.16",
+    "babel-preset-es2015": "^6.16.0",
     "chai": "^3.5.0",
     "eslint": "^2.7.0",
-    "eslint-config-xo": "^0.15.0",
-    "eslint-plugin-import": "^1.4.0",
-    "eslint-plugin-babel": "^3.3.0",
+    "eslint-config-xo": "^0.16.0",
     "mocha": "^3.0.2",
-    "rimraf": "^2.5.2"
-  },
-  "dependencies": {
-    "babel-runtime": "^6.6.1"
+    "rimraf": "^2.5.4",
+    "webpack": "^1.13.2"
   },
   "babel": {
     "presets": [
       "es2015"
     ],
     "plugins": [
-      "transform-runtime"
+      "babel-polyfill"
     ]
   },
   "eslintConfig": {
-    "parser": "babel-eslint",
     "extends": "xo/esnext",
     "rules": {
       "no-unused-vars": 1,
       "space-before-function-paren": 0,
-      "babel/object-curly-spacing": [2, "always", { "objectsInObjects": false }]
+      "babel/object-curly-spacing": [
+        2,
+        "always",
+        {
+          "objectsInObjects": false
+        }
+      ]
     },
     "env": {
       "mocha": true
