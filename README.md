@@ -3,7 +3,7 @@
 # BitFlags
 
 [![Travis](https://img.shields.io/travis/easyfuckingpeasy/BitFlags.svg)](https://travis-ci.org/easyfuckingpeasy/BitFlags)
-[![bitHound Overall Score](https://www.bithound.io/github/easyfuckingpeasy/BitFlags/badges/score.svg)](https://www.bithound.io/github/easyfuckingpeasy/LiveCoding.tv-Notifier)
+[![bitHound Overall Score](https://www.bithound.io/github/easyfuckingpeasy/BitFlags/badges/score.svg)](https://www.bithound.io/github/easyfuckingpeasy/BitFlags)
 [![dependencies](https://david-dm.org/easyfuckingpeasy/BitFlags.svg)](https://david-dm.org/easyfuckingpeasy/BitFlags)
 [![devDependencies](https://david-dm.org/easyfuckingpeasy/BitFlags/dev-status.svg)](https://david-dm.org/easyfuckingpeasy/BitFlags)
 [![xo code style](https://img.shields.io/badge/code%20style-%20XO-67d5c5.svg)](https://github.com/sindresorhus/xo)
@@ -73,4 +73,4 @@ or link in HTML: `<script src="xxxx.min.js"></script>`
 Pull requests are welcome, but please test and lint before by running `npm test` and `npm lint`.
 
 ## License
-See [LICENSE](/LICENSE) file
+MIT, see [LICENSE](/LICENSE) file
