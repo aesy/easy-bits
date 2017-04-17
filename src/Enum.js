@@ -1,21 +1,31 @@
-import EnumBase from './EnumBase';
-import EnumValue from './EnumValue';
+// Polyfills
+import freeze from 'core-js/library/fn/object/freeze';
+import defineProperty from 'core-js/library/fn/object/define-property';
 
+import EnumBase from './EnumBase';
+import EnumConstant from './EnumConstant';
+
+/**
+ * @public
+ * @class
+ */
 class Enum extends EnumBase {
+
 	/**
+	 * @public
 	 * @constructor
-	 * @param {...String} keys
+	 * @param {...String?} [constants]
 	 */
-	constructor(...keys) {
+	constructor(...constants) {
 		super();
 
 		const flags = {};
 		let bitValue = 1;
 
-		for (const flag of keys) {
-			flags[flag] = new EnumValue(flag, bitValue);
+		for (const flag of constants) {
+			flags[flag] = new EnumConstant(flag, bitValue);
 
-			Object.defineProperty(this, flag, {
+			Object::defineProperty(this, flag, {
 				enumerable: true,
 				get() {
 					return flags[flag];
@@ -26,27 +36,19 @@ class Enum extends EnumBase {
 			this.length++;
 		}
 
-		Object.freeze(this);
+		Object::freeze(this);
 	}
 
-	// for (const flag of flags) {
-	// 	if (flag instanceof Object) {
-	// 		for (const [key, value] of flag.entries()) {
-	// 			if (!(value instanceof Number)) {
-	// 				throw new Error('');
-	// 			} else if (value < bitValue) {
-	// 				throw new Error('');
-	// 			}
-	//
-	// 			bitValue = value;
-	// 			this.flags[key] = new EnumValue(key, bitValue);
-	// 			bitValue++;
-	// 		}
-	// 	} else {
-	// 		this.flags[flag] = new EnumValue(flag, bitValue);
-	// 		bitValue++;
-	// 	}
-	// }
+	/**
+	 * Gets a string representation of this Enum instance.
+	 *
+	 * @public
+	 * @returns {String} A string representation of this Enum instance.
+	 */
+	toString() {
+		return `Enum(length:${this.length})`;
+	}
+
 }
 
 export default Enum;
