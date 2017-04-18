@@ -4,8 +4,7 @@ const path = require('path');
 module.exports = {
 	context: path.resolve(__dirname, '..'),
 	entry: {
-		"EasyBits":     "./src/index.js",
-		"EasyBits.min": "./src/index.js",
+		"easy-bits.min": "./src/index.js",
 	},
 	output: {
 		path: path.resolve(__dirname, '../dist/'),

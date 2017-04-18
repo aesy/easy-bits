@@ -1,76 +1,130 @@
-## Work in Progress, ignore for the time being. And possibly in the future too, there ain't much use to all of this.
-
-# BitFlags
+# Easy Bits
 
 [![Travis](https://img.shields.io/travis/easyfuckingpeasy/BitFlags.svg)](https://travis-ci.org/easyfuckingpeasy/BitFlags)
 [![bitHound Overall Score](https://www.bithound.io/github/easyfuckingpeasy/BitFlags/badges/score.svg)](https://www.bithound.io/github/easyfuckingpeasy/BitFlags)
-[![dependencies](https://david-dm.org/easyfuckingpeasy/BitFlags.svg)](https://david-dm.org/easyfuckingpeasy/BitFlags)
-[![devDependencies](https://david-dm.org/easyfuckingpeasy/BitFlags/dev-status.svg)](https://david-dm.org/easyfuckingpeasy/BitFlags)
 [![xo code style](https://img.shields.io/badge/code%20style-%20XO-67d5c5.svg)](https://github.com/sindresorhus/xo)
 [![MIT license](https://img.shields.io/github/license/easyfuckingpeasy/BitFlags.svg)](https://github.com/easyfuckingpeasy/BitFlags/blob/master/LICENSE)
 
-Enums, BitFlags, BitFields and BitArrays for JavaScript.
+Easy to use Enums, BitFlags, BitFields, BitMasks and BitArrays for JavaScript.
 
-## API Reference
-See [Documentation.md](/Docs.md).
-
-## Examples
+## Usage
 #### BitFlags + BitField:
 ```js
-var options = new BitFlags('OPTION1', 'OPTION2', 'OPTION3');
-var configuration = new BitField();
+const options = new BitFlags('OPTION1', 'OPTION2', 'OPTION3');
+const configuration = options.createBitField();
 
-configuration.on(options.OPTION1 | options.OPTION3); // set option1 & option3 bits to true
-configuration.on(options.OPTION1, options.OPTION3); // same as the above
+configuration.on(options.OPTION1 | options.OPTION3); // Set option1 & option3 bits to true
+configuration.on(options.OPTION1, options.OPTION3);  // Same as the above
 
 configuration.test(options.OPTION1); // true
 configuration.test(options.OPTION2); // false
 configuration.test(options.OPTION2); // true
 configuration.testAny(options.OPTION1 | options.OPTION2); // true
 configuration.testAll(options.OPTION1 | options.OPTION2); // false
+
+// Serialize
+const string = configuration.serialize();
+// Deserialize
+const config2 = configuration.deserialize(string);
 ```
-BitFields and BitArray are interchangeable, the only difference between them is how they store the data.
+BitFields and BitArray are interchangeable, their APIs are identical (excluding conversion methods like 
+`BitArray#toBitField`). The only difference between them is how many flags they support (BitField is limited to 31 
+flags). This is due to how they internally store the data.
 
 #### Enums:
 ```js
-var day = new Enum('MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY');
+const Day = new Enum('MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY');
 
-day.MONDAY.name // 'MONDAY'
-String(day.MONDAY) // 'MONDAY'
-day.FRIDAY.value // 6
-Number(day.FRIDAY) // 6
+console.log(Day.MONDAY);         // EnumConstant('MONDAY':0)
+console.log(Day.MONDAY.name);    // 'MONDAY'
+console.log(String(Day.MONDAY)); // 'MONDAY'
+console.log(Day.FRIDAY.ordinal); // 4
+console.log(Number(Day.FRIDAY)); // 4
 
 // Enums are immutable
-day.MY_OWN_DAY = 1337; // TypeError
-
-var notDefined = day.HAPPY_DAY; // Error
+Day.MY_OWN_DAY = 1337;
+Day.MONDAY = 42;
+console.log(Day.MY_OWN_DAY); // undefined
+console.log(Day.MONDAY);     // EnumConstant('MONDAY':0)
 
 // Enums are iterable
-Object.keys(day) // ['MONDAY', 'TUESDAY', 'WEDNESDAY' ...]
-for (var value in day) {}
-day.forEach(function(name, value) {});
+console.log(Object.keys(Day)); // ['MONDAY', 'TUESDAY' 'WEDNESDAY', 'THURSDAY', ...]
+console.log(Day.values());     // [EnumConstant('MONDAY':0), EnumConstant('TUESDAY':1), ...]
+for (let value of Day) {}
+Day.forEach((value, name) => {});
 
-// Enums are "typesafe", but only if strictly compared
-day.MONDAY == otherEnum.OTHER_VALUE // true
-day.MONDAY === otherEnum.OTHER_VALUE // false
-day.MONDAY.equals(day.FRIDAY) // false
+// Enums are easy to use
+switch (value) {
+  case Day.MONDAY:
+    break;
+  case Day.TUESDAY:
+    break;
+}
+
+console.log(Day.MONDAY.equals(Day.FRIDAY));        // false
+console.log(Day.MONDAY instanceof Day);            // true
+console.log(Day.MONDAY === otherEnum.OTHER_VALUE); // false
+console.log(Day.MONDAY == otherEnum.OTHER_VALUE);  // true, if their ordinal values are the same
 ```
 
-## Installation
-From npm: run `npm install xxxx --save`
+#### TypeScript
+```ts
+// Typings for the Enum class is not provided, use TypeScripts' enum instead!
+enum Direction { NORTH, SOUTH, EAST, WEST }
 
-From source: download `xxxx.min.js` in the `dist` folder
+// No typings for BitFlags either. Again, use TypeScripts' enum!
+enum FontStyle {
+  NORMAL      = 0,
+  BOLD        = 1 << 1,
+  ITALICS     = 1 << 2,
+  UNDERSCORED = 1 << 3,
+  UPPERCASE   = 1 << 4,
+  MY_FAVORITE = BOLD | ITALICS
+}
+
+const configuration = new BitField<FontStyle>();
+configuration.on(FontStyle.BOLD | FontStyle.UPPERCASE);
+configuration.off(OtherEnum.CONSTANT); // ERROR: argument type OtherEnum is not assignable to parameter type FontStyle
+```
+
+## API Reference
+See the JSDoc comments in the source files.
+
+## Installation
+From npm: run `npm install easy-bits --save` (as soon as it is published)
+
+From source: download `easy-bits.min.js` in the `dist` folder
 
 #### and then import
-ES6 style: `import { Enum } from 'xxxx';`
+ES6 style: `import { Enum } from 'easy-bits';`
 
-or link in HTML: `<script src="xxxx.min.js"></script>`
+or link in HTML: `<script src="easy-bits.min.js"></script>`
 
-## Browser Support
-???
+## Support
+This library uses polyfills that doesn't pollute the global namespace. It has not been thoroughly tested in various 
+environments. However, these are the environments that is targetted to work:
+
+`Chrome 26+` `Firefox 4+` `Safari 5+` `Opera 12+` `Internet Explorer 8+` `Edge` `NodeJS 1+`
 
 ## Contribute
-Pull requests are welcome, but please test and lint before by running `npm test` and `npm lint`.
+Use the issue tracker to report bugs or add feature requests. Pull requests are more than welcome, just make sure 
+compiliation still works (`npm run build:prod`), linting pass without errors (`npm run lint`) and all tests still pass 
+(`npm run test`) beforehand. Check the list of issues below if you want to contribute but don't know where to start!
+
+## Issues
+* No API reference. This should be auto-generated from the JSDoc comments in the source.
+* No performance tests.
+* No thorough environment tests.
+* Accessing nonexistant EnumConstant properties does not throw an error. This is possible to solve with 
+[Proxies](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+but a polyfill for that would make lookups slow {{citation needed}}.
+* No auto-completion for Enum/BitFlag constants.
+* EnumConstants should interpolate as a string. For example, this fails:
+```js
+const constant = new EnumConstant('name', 42);
+expect('' + constant + '').to.equal(constant.toString()); // Expected: 'EnumConstant(name:42)', Actual: '42'
+expect(`${constant}`).to.equal(constant.toString());      // Expected: 'EnumConstant(name:42)', Actual: '42'
+```
 
 ## License
-MIT, see [LICENSE](/LICENSE) file
+MIT, see [LICENSE](/LICENSE) file.
