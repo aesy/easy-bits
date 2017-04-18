@@ -74,7 +74,7 @@ class EnumBase {
 	 * Gets the values/constants of this instance.
 	 *
 	 * @public
-	 * @returns {EnumConstant} The values/constants of this Enum-like instance.
+	 * @returns {Array<EnumConstant>} The values/constants of this Enum-like instance.
 	 */
 	values() {
 		return Object::values(this);
@@ -115,7 +115,7 @@ class EnumBase {
 	 */
 	static deserialize(input) {
 		if (typeof input !== 'string') {
-			throw new Error("Failed to deserialize input");
+			throw new Error('Failed to deserialize input');
 		}
 
 		return new this(...input.split(','));
