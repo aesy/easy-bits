@@ -5,36 +5,44 @@ import BitField from '../src/BitField';
 describe('BitField', () => {
 	const length = 10;
 	const value = 0b0110001101;
-	const filler = new Array(length - value.toString(2).length).fill(0);
-	const valueString = filler.join('') + value.toString(2);
+	const filler = '0'.repeat(length - value.toString(2).length);
+	const valueString = filler + value.toString(2);
 	const valueArray = valueString.split('').map(Number);
 	const valueArrayReversed = valueArray.slice(0).reverse();
 	const field = new BitField(length).on(value);
 
-	it('should be able to take numbers, BitValues or other BitFields as input parameters', () => {
-
-	});
-
 	it('should throw an error if working with >=32 bit values', () => {
-
+		expect(() => {
+			new BitField(32);
+		}).to.throw(Error);
 	});
 
-	describe('#fromArray()', () => {
+	describe('.fromArray()', () => {
 		it('should be initialize from an array, no matter what objects are in it', () => {
-			const fieldFromArray = BitField.fromArray([1, 0, [], {}, 'a', '', undefined, null]);
-			expect(fieldFromArray.value).to.equal(0b10111000);
+			const fieldFromArray = BitField.fromArray([1, 0, [], {}, 'a', '', undefined, null, true, false]);
+			expect(fieldFromArray.value).to.equal(0b1011100010);
 		});
 	});
 
 	describe('#copy()', () => {
 		it('should return a copy (clone) of the provided BitField', () => {
-			expect(field).not.to.equal(BitField.copy(field));
+			const copy1 = new BitField().copy(field);
+			const copy2 = BitField.copy(value);
+
+			expect(copy1.valueOf()).to.equal(field.valueOf());
+			expect(copy1).to.be.an.instanceof(BitField);
+			expect(field).not.to.equal(copy1);
+			expect(copy1.valueOf()).to.equal(copy2.valueOf());
 		});
 	});
 
 	describe('#clone()', () => {
 		it('should return a copy (clone) of this', () => {
-			expect(field).not.to.equal(field.clone());
+			const copy = field.clone();
+
+			expect(copy.valueOf()).to.equal(field.valueOf());
+			expect(copy).to.be.an.instanceof(BitField);
+			expect(field).not.to.equal(copy);
 		});
 	});
 
@@ -67,6 +75,7 @@ describe('BitField', () => {
 
 			expect(field.length).to.be.a('number');
 			expect(field.length).to.equal(length);
+			expect(new BitField().length).to.equal(1);
 			expect(dynamicField.length).to.equal(4);
 		});
 	});
@@ -194,49 +203,64 @@ describe('BitField', () => {
 
 	describe('#set()', () => {
 		it('should set bits to a specific value based on a bitmask', () => {
-
+			// TODO
 		});
 	});
 
 	describe('#setAll()', () => {
 		it('should set all bits to a specific value', () => {
-
+			// TODO
 		});
 	});
 
 	describe('#setAt()', () => {
 		it('should set bit to a specific value at a specific index', () => {
-
+			// TODO
 		});
 	});
 
 	describe('#setRange()', () => {
 		it('should set bits to a specific value within a specific range', () => {
-
+			// TODO
 		});
 	});
 
 	describe('#flip() | #toggle()', () => {
 		it('should flip bits based on a bitmask', () => {
-
+			// TODO
 		});
 	});
 
 	describe('#flipAll()', () => {
 		it('should flip all bits of this with its\' length in consideration (if not dynamic)', () => {
-
+			// TODO
 		});
 	});
 
 	describe('#flipAt()', () => {
 		it('should flip bit at a specific index', () => {
-
+			// TODO
 		});
 	});
 
 	describe('#flipRange()', () => {
 		it('should flip bits within a specific range', () => {
-
+			// TODO
 		});
+	});
+
+	it('should be serializable', () => {
+		const input = '01101';
+		const output = new BitField(5).copy(0b1101).serialize();
+
+		expect(output).to.equal(input);
+
+		expect(() => {
+			BitField.deserialize(input);
+		}).to.not.throw(Error);
+
+		expect(() => {
+			BitField.deserialize('invalid');
+		}).to.throw(Error);
 	});
 });
