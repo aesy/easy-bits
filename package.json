@@ -1,41 +1,44 @@
 {
-	"name": "BitField",
-	"version": "0.1.0",
-	"license": "MIT",
-	"description": "",
-	"keywords": [],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/name/repo.git"
-	},
-	"main": "index.js",
-	"scripts": {
-		"clean": "rimraf ./dist",
-		"build:prod": "webpack --config ./config/webpack.config.production.js",
-		"build:dev": "webpack --config ./config/webpack.config.development.js",
-		"build:watch": "npm run build:dev -- --watch",
-		"lint": "eslint src --config ./config/.eslintrc.json",
-		"lint:fix": "npm run lint -- --fix",
-		"test": "mocha test --R --compilers js:babel-core/register --reporter=spec",
-		"test:coverage": "istanbul cover --print=detail --report=none node_modules/mocha/bin/_mocha -- --R --compilers js:babel-core/register --reporter=dot test",
-		"test:watch": "npm run test -- --reporter min --watch",
-		"travis": "npm-run-all --parallel lint test build:prod"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"babel-core": "^6.24.1",
-		"babel-eslint": "^7.2.2",
-		"babel-loader": "^6.4.1",
-		"babel-preset-es2015": "^6.24.1",
-		"babel-preset-stage-0": "^6.24.1",
-		"chai": "^3.5.0",
-		"eslint": "^3.19.0",
-		"eslint-config-xo": "^0.18.1",
-		"istanbul": "1.0.0-alpha.2",
-		"mocha": "^3.2.0",
-		"npm-run-all": "^4.0.2",
-		"rimraf": "^2.6.1",
-		"webpack": "^2.4.1",
-		"webpack-merge": "^4.1.0"
-	}
+  "name": "Easy-Bits",
+  "version": "0.1.0",
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/name/repo.git"
+  },
+  "main": "index.js",
+  "jsnext:main": "src/index.js",
+  "types": "typings/easy-bits.d.ts",
+  "scripts": {
+    "build:prod": "webpack --config ./config/webpack.config.production.js",
+    "build:dev": "webpack --config ./config/webpack.config.development.js",
+    "build:watch": "npm run build:dev -- --watch",
+    "clean": "rimraf ./dist",
+    "lint": "eslint src --config ./config/.eslintrc.json",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "mocha test --R --compilers js:babel-register --reporter=spec",
+    "test:coverage": "istanbul cover --print=detail --report=none node_modules/mocha/bin/_mocha -- --R --compilers js:babel-core/register --reporter=dot test",
+    "test:watch": "npm run test -- --reporter min --watch",
+    "travis": "npm-run-all --parallel lint test build:prod"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^7.2.2",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-xo": "^0.18.1",
+    "istanbul": "^1.1.0-alpha.1",
+    "mocha": "^3.2.0",
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
+    "webpack": "^2.4.1",
+    "webpack-merge": "^4.1.0"
+  }
 }
