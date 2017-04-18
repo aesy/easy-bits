@@ -2,7 +2,7 @@
 import fill from 'core-js/library/fn/array/virtual/fill';
 import repeat from 'core-js/library/fn/string/virtual/repeat';
 
-import BitArray from "./BitArray";
+import BitArray from './BitArray';
 
 // TODO make sure all methods work with minLength
 
@@ -100,7 +100,7 @@ class BitField {
 	 * @returns {Number} The value.
 	 */
 	static valueOf(bitField) {
-		if (typeof bitField === "object") {
+		if (typeof bitField === 'object') {
 			return bitField.valueOf();
 		}
 
@@ -116,7 +116,7 @@ class BitField {
 	 * @returns {Number} The length. Is never less than 1.
 	 */
 	static lengthOf(bitField) {
-		if (typeof bitField === "object") {
+		if (typeof bitField === 'object') {
 			return bitField.length;
 		}
 
@@ -371,7 +371,7 @@ class BitField {
 	 */
 	static deserialize(input) {
 		if (isNaN(input)) {
-			throw new Error("Failed to deserialize input");
+			throw new Error('Failed to deserialize input');
 		}
 
 		const length = input.length;
@@ -437,7 +437,7 @@ class BitField {
 	 * @returns {BitArray}
 	 */
 	toBitArray() {
-		throw new Error("Not yet implemented");
+		throw new Error('Not yet implemented');
 	}
 
 	/**
