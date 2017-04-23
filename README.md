@@ -1,9 +1,10 @@
 # Easy Bits
 
-[![Travis](https://img.shields.io/travis/easyfuckingpeasy/BitFlags.svg)](https://travis-ci.org/easyfuckingpeasy/BitFlags)
-[![bitHound Overall Score](https://www.bithound.io/github/easyfuckingpeasy/BitFlags/badges/score.svg)](https://www.bithound.io/github/easyfuckingpeasy/BitFlags)
+[![Travis](https://img.shields.io/travis/easyfuckingpeasy/Easy-Bits.svg)](https://travis-ci.org/easyfuckingpeasy/Easy-Bits)
+[![bitHound Overall Score](https://www.bithound.io/github/easyfuckingpeasy/Easy-Bits/badges/score.svg)](https://www.bithound.io/github/easyfuckingpeasy/Easy-Bits)
+[![Coverage Status](https://coveralls.io/repos/github/easyfuckingpeasy/Easy-Bits/badge.svg?branch=master)](https://coveralls.io/github/easyfuckingpeasy/Easy-Bits?branch=master)
 [![xo code style](https://img.shields.io/badge/code%20style-%20XO-67d5c5.svg)](https://github.com/sindresorhus/xo)
-[![MIT license](https://img.shields.io/github/license/easyfuckingpeasy/BitFlags.svg)](https://github.com/easyfuckingpeasy/BitFlags/blob/master/LICENSE)
+[![MIT license](https://img.shields.io/github/license/easyfuckingpeasy/Easy-Bits.svg)](https://github.com/easyfuckingpeasy/Easy-Bits/blob/master/LICENSE)
 
 Easy to use Enums, BitFlags, BitFields, BitMasks and BitArrays for JavaScript.
 
@@ -61,10 +62,10 @@ switch (value) {
     break;
 }
 
-console.log(Day.MONDAY.equals(Day.FRIDAY));        // false
-console.log(Day.MONDAY instanceof Day);            // true
-console.log(Day.MONDAY === otherEnum.OTHER_VALUE); // false
-console.log(Day.MONDAY == otherEnum.OTHER_VALUE);  // true, if their ordinal values are the same
+console.log(Day.MONDAY.equals(Day.FRIDAY));     // false
+console.log(Day.MONDAY instanceof Day);         // true
+console.log(Day.MONDAY === OtherEnum.CONSTANT); // false
+console.log(Day.MONDAY == OtherEnum.CONSTANT);  // true, if their ordinal values are the same
 ```
 
 #### TypeScript
@@ -119,6 +120,7 @@ compiliation still works (`npm run build:prod`), linting pass without errors (`n
 [Proxies](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 but a polyfill for that would make lookups slow {{citation needed}}.
 * No auto-completion for Enum/BitFlag constants.
+* Configuration files should reside in the `config/` folder.
 * EnumConstants should interpolate as a string. For example, this fails:
 ```js
 const constant = new EnumConstant('name', 42);

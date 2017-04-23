@@ -5,6 +5,11 @@ node_js:
 install:
     - npm i
 script:
-    - npm run travis
+    - npm run build:prod
+    - npm run lint
+    - npm run test
+    - npm run test:coverage:check
+after_success:
+    - npm run test:coverage:report
 notifications:
     email: false
