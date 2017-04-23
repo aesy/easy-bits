@@ -19,10 +19,10 @@
     "clean": "rimraf ./dist",
     "lint": "eslint src --config ./config/.eslintrc.json",
     "lint:fix": "npm run lint -- --fix",
-    "test": "mocha test --R --compilers js:babel-register --reporter=spec",
-    "test:coverage": "istanbul cover --print=detail --report=none node_modules/mocha/bin/_mocha -- --R --compilers js:babel-core/register --reporter=dot test",
-    "test:watch": "npm run test -- --reporter min --watch",
-    "travis": "npm-run-all --parallel lint test build:prod"
+    "test": "nyc --reporter=html --reporter=text --require=babel-register mocha",
+    "test:coverage:check": "nyc report && nyc check-coverage --lines=80 --functions=80 --branches=80",
+    "test:coverage:report": "nyc report --reporter=lcov | coveralls",
+    "test:watch": "npm run test -- --reporter=min --watch"
   },
   "dependencies": {},
   "devDependencies": {
@@ -32,11 +32,11 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
     "chai": "^3.5.0",
+    "coveralls": "^2.13.0",
     "eslint": "^3.19.0",
     "eslint-config-xo": "^0.18.1",
-    "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.2.0",
-    "npm-run-all": "^4.0.2",
+    "nyc": "^10.2.0",
     "rimraf": "^2.6.1",
     "webpack": "^2.4.1",
     "webpack-merge": "^4.1.0"
