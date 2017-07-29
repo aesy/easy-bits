@@ -33,20 +33,22 @@ describe('Enum', () => {
 
 	it('should be iterable', () => {
 		let i = 0;
-
 		for (const flag in flags) {
+			expect(flag).to.be.a('string');
 			expect(flag).to.equal(flagArray[i]);
 			i++;
 		}
 
 		expect(i).to.equal(flagArray.length);
 
-		for (const value of flags) {
-			expect(value).to.satisfy((val) => {
-				return (typeof val === 'number') || (val instanceof EnumConstant);
-			});
-			expect(Number(value)).to.not.equal(0);
+		let j = 0;
+		for (const flag of flags) {
+			expect(flag).to.be.an.instanceof(EnumConstant);
+			expect(Number(flag)).to.not.equal(0);
+			j++;
 		}
+
+		expect(j).to.equal(flagArray.length);
 	});
 
 	it('should be serializable', () => {
@@ -59,9 +61,11 @@ describe('Enum', () => {
 			Enum.deserialize(input);
 		}).to.not.throw(Error);
 
-		expect(() => {
-			Enum.deserialize(42);
-		}).to.throw(Error);
+		for (let value of [null, 42, '', 'ENUM,', undefined, {}]) {
+			expect(() => {
+				Enum.deserialize(value);
+			}).to.throw(Error);
+		}
 	});
 
 	it('should recognize its\' flags as instances', () => {

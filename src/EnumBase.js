@@ -77,7 +77,8 @@ class EnumBase {
 	 * @returns {Array<EnumConstant>} The values/constants of this Enum-like instance.
 	 */
 	values() {
-		return Object::values(this);
+		return Object::values(this)
+			.sort((a, b) => a.ordinal - b.ordinal);
 	}
 
 	/**
@@ -98,7 +99,6 @@ class EnumBase {
 	 * @returns {String}
 	 */
 	serialize() {
-		// TODO value ordering has to be guaranteed
 		return this.values()
 			.map(constant => constant.name)
 			.toString();
@@ -115,10 +115,17 @@ class EnumBase {
 	 */
 	static deserialize(input) {
 		if (typeof input !== 'string') {
-			throw new Error('Failed to deserialize input');
+			throw new Error('Failed to deserialize input.');
 		}
 
-		return new this(...input.split(','));
+		const values = input.split(',')
+							.map(value => value.trim());
+
+		if (values::includes('')) {
+			throw new Error('Failed to deserialize input. Invalid enum <<empty>> found.');
+		}
+
+		return new this(...values);
 	}
 
 	/**
@@ -138,7 +145,7 @@ class EnumBase {
 
 				return {
 					value,
-					done: index <= arr.length
+					done: index > arr.length
 				};
 			}
 		};
