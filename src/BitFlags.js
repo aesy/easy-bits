@@ -8,16 +8,19 @@ import EnumBase from './EnumBase';
 import EnumConstant from './EnumConstant';
 
 /**
+ * A BitFlags instance consists of a set of predefined values, each representing a binary digit that acts as a flag
+ * to enable or disable bits in a BitSet. These values are accessible directly on the instance.
+ *
+ * A NONE property is always available on the instance.
+ *
  * @public
  * @class
  */
 class BitFlags extends EnumBase {
-
 	/**
 	 * @public
 	 * @readonly
-	 * @field
-	 * @type {EnumConstant}
+	 * @member {EnumConstant}
 	 */
 	NONE;
 
@@ -55,6 +58,18 @@ class BitFlags extends EnumBase {
 	}
 
 	/**
+	 * Produces a new instance from an value.
+	 *
+	 * @public
+	 * @static
+	 * @param {Array<String>} array
+	 * @returns {BitFlags} A new instance.
+	 */
+	static fromArray(array) {
+		return new this(...array);
+	}
+
+	/**
 	 * Produces a BitField instance with a length based on the amount of constants in this BitFlags instance.
 	 *
 	 * @public
@@ -74,16 +89,9 @@ class BitFlags extends EnumBase {
 		return new BitArray(this.length);
 	}
 
-	/**
-	 * Gets a string representation of this BitFlags instance.
-	 *
-	 * @public
-	 * @returns {String} A string representation of this BitFlags instance.
-	 */
 	toString() {
 		return `BitFlags(length:${this.length})`;
 	}
-
 }
 
 export default BitFlags;

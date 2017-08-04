@@ -12,14 +12,12 @@ import values from 'core-js/library/fn/object/values';
  * @class
  */
 class EnumBase {
-
 	/**
-	 * The amount of values/constants in this Enum-like instance.
+	 * The amount of values/constants in this instance.
 	 *
 	 * @public
 	 * @readonly
-	 * @field
-	 * @type {Number}
+	 * @member {Number}
 	 */
 	length;
 
@@ -33,18 +31,6 @@ class EnumBase {
 			writable: true,
 			enumerable: false
 		});
-	}
-
-	/**
-	 * Produces a new Enum-like instance from an array.
-	 *
-	 * @public
-	 * @static
-	 * @param {Array<String>} array The array of string constants to base the new instance on.
-	 * @returns {EnumBase} A new instance.
-	 */
-	static fromArray(array) {
-		return new this(...array);
 	}
 
 	/**
@@ -118,8 +104,7 @@ class EnumBase {
 			throw new Error('Failed to deserialize input.');
 		}
 
-		const values = input.split(',')
-							.map(value => value.trim());
+		const values = input.split(',').map(value => value.trim());
 
 		if (values::includes('')) {
 			throw new Error('Failed to deserialize input. Invalid enum <<empty>> found.');
@@ -162,6 +147,14 @@ class EnumBase {
 		return this.has(value);
 	}
 
+	/**
+	 * Gets a string representation of this instance.
+	 *
+	 * @public
+	 * @abstract
+	 * @returns {String} A string representation of this instance.
+	 */
+	toString() {}
 }
 
 export default EnumBase;

@@ -2,7 +2,7 @@
  * @private
  * @param {Boolean} expression
  * @param {String} message Error description.
- * @throws {Error} if expression evaluates to false.
+ * @throws {Error} In case expression evaluates to false.
  */
 export function assertTrue(expression, message) {
 	if (!expression) {

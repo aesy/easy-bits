@@ -1,8 +1,4 @@
 /**
- * @typedef {BitSet|Number} BitSetLike
- */
-
-/**
  * A BitSet holds a sequence of bits and contains convenient methods for common bit operations.
  *
  * @interface BitSet
@@ -78,7 +74,7 @@
  * @name BitSet#testAt
  * @param {Bit} value
  * @param {Number} index Starting at 0, from the rightmost bit.
- * @throws {Error} if 'index' is not an integer or out of bounds.
+ * @throws {Error} In case 'index' is not an integer or out of bounds.
  * @returns {Boolean}
  */
 
@@ -135,7 +131,7 @@
  * @name BitSet#setAt
  * @param {Bit} value
  * @param {Number} index Starting at 0, from the rightmost bit.
- * @throws {Error} if 'index' is not an integer or out of bounds.
+ * @throws {Error} In case 'index' is not an integer or out of bounds.
  * @returns {this} This instance.
  */
 
@@ -146,7 +142,7 @@
  * @name BitSet#setRange
  * @param value {Bit} value
  * @param {Number} from Starting index, from the rightmost bit.
- * @param {Number} to Ending index.
+ * @param {Number} to The exclusive ending index.
  * @returns {this} This instance.
  */
 
@@ -173,7 +169,7 @@
  * @function
  * @name BitSet#flipAt
  * @param {Number} index Starting at 0, from the rightmost bit.
- * @throws {Error} if 'index' is not an integer or out of bounds.
+ * @throws {Error} In case 'index' is not an integer or out of bounds.
  * @returns {this} This instance.
  */
 
@@ -183,7 +179,7 @@
  * @function
  * @name BitSet#flipRange
  * @param {Number} from Starting index, from the rightmost bit.
- * @param {Number} to Ending index.
+ * @param {Number} to The exclusive ending index.
  * @returns {this} This instance.
  */
 
@@ -222,7 +218,7 @@
  */
 
 /**
- * Gets an array containing all the bits in this instance.
+ * Gets an value containing all the bits in this instance.
  *
  * @function
  * @name BitSet#toArray

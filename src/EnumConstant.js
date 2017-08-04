@@ -6,14 +6,12 @@ import freeze from 'core-js/library/fn/object/freeze';
  * @class
  */
 class EnumConstant {
-
 	/**
 	 * The name of this instance.
 	 *
 	 * @public
 	 * @readonly
-	 * @field
-	 * @type {String}
+	 * @member {String}
 	 */
 	name;
 
@@ -22,8 +20,7 @@ class EnumConstant {
 	 *
 	 * @public
 	 * @readonly
-	 * @field
-	 * @type {Number}
+	 * @member {Number}
 	 */
 	ordinal;
 
@@ -66,12 +63,11 @@ class EnumConstant {
 	 *
 	 * @public
 	 * @param {EnumConstant} other The other constant to compare with.
-	 * @returns {Boolean} Are equal.
+	 * @returns {Boolean}
 	 */
 	equals(other) {
 		return this === other;
 	}
-
 }
 
 export default EnumConstant;

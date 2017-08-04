@@ -6,15 +6,16 @@ import EnumBase from './EnumBase';
 import EnumConstant from './EnumConstant';
 
 /**
+ * An Enum consists of a set of prefedined constants. These constants are accessible directly on the instance.
+ *
  * @public
  * @class
  */
 class Enum extends EnumBase {
-
 	/**
 	 * @public
 	 * @constructor
-	 * @param {...String?} [constants]
+	 * @param {...String} constants
 	 */
 	constructor(...constants) {
 		super();
@@ -40,15 +41,20 @@ class Enum extends EnumBase {
 	}
 
 	/**
-	 * Gets a string representation of this Enum instance.
+	 * Produces a new instance from an value.
 	 *
 	 * @public
-	 * @returns {String} A string representation of this Enum instance.
+	 * @static
+	 * @param {Array<String>} array
+	 * @returns {Enum} A new instance.
 	 */
+	static fromArray(array) {
+		return new this(...array);
+	}
+
 	toString() {
 		return `Enum(length:${this.length})`;
 	}
-
 }
 
 export default Enum;
