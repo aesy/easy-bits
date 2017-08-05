@@ -2,11 +2,8 @@
 import fill from 'core-js/library/fn/array/virtual/fill';
 import repeat from 'core-js/library/fn/string/virtual/repeat';
 
-import BitArray from './BitArray';
+import BitSetUtils from './BitSetUtils';
 import { assertTrue, isInteger, withinRange } from './util';
-
-// TODO make sure all methods work with minLength
-// TODO allow 'value' to be another 'BitSet'
 
 /**
  * A {@link BitSet} implementation limited to 31 bits due to bits being stored in a Number type. Operations on this instance
@@ -40,12 +37,11 @@ class BitField {
 	/**
 	 * @public
 	 * @constructor
-	 * @param {Number} [minLength = 0] The minimum length of the bitfield.
-     * @throws {Error} In case length exceeds 31 (Consider using BitArray instead if u reach this limit).
-	 * @see The property documention.
+	 * @param {Number} [minLength = 1] The minimum length of the bitfield.
+     * @throws {Error} In case length exceeds 31 (Consider using BitArray instead if u may reach this limit).
 	 */
 	constructor(minLength) {
-		this.minLength = minLength || 0;
+		this.minLength = minLength || 1;
 
 		if (this.minLength > 31) {
 			throw new Error('BitField is limited to 31 flags.');
@@ -53,8 +49,8 @@ class BitField {
 	}
 
 	/**
-	 * Produces a new bitfield instance from an array. The array may contain anything, the resulting bitfield is based
-	 * on the truthiness of the array contents.
+	 * Produces a new BitField instance from an value. The value may contain anything, the resulting bitfield is based
+	 * on the truthiness of the value contents.
 	 * Example: [true, 0, {}] will yield 101.
 	 *
 	 * @public
@@ -79,65 +75,8 @@ class BitField {
 		return new BitField(length).on(bitMask);
 	}
 
-	/**
-	 * Gets the integer value of a bitsetlike value or instance.
-	 *
-	 * @private
-	 * @static
-	 * @param {BitSetLike} value
-	 * @returns {Number} The value.
-	 */
-	static valueOf(value) {
-		if (typeof value === 'object') {
-			return value.valueOf();
-		}
-
-		return value;
-	}
-
-	/**
-	 * Gets the length of a bitsetlike value or instance.
-	 *
-	 * @private
-	 * @static
-	 * @param {BitSetLike} value
-	 * @returns {Number} The length. Is never less than 1.
-	 */
-	static lengthOf(value) {
-		if (typeof value === 'object') {
-			return value.length;
-		}
-
-		let count = 0;
-
-		while (value > 0) {
-			count++;
-			value >>= 1;
-		}
-
-		if (count > 0) {
-			return count;
-		}
-
-		return 1;
-	}
-
-	/**
-	 * Combines masks. This is equivalent to a OR operation.
-	 *
-	 * @private
-	 * @static
-	 * @param {...BitSetLike} masks The masks to combine.
-	 * @returns {Number} The resulting mask.
-	 */
-	static combineMasks(...masks) {
-		return masks.reduce((prev, curr) =>
-			prev | curr
-		);
-	}
-
 	get length() {
-		const length = BitField.lengthOf(this.value);
+		const length = BitSetUtils.lengthOf(this.value);
 
 		if (this.minLength && this.minLength > length) {
 			return this.minLength;
@@ -162,14 +101,14 @@ class BitField {
 	}
 
 	intersects(bitset) {
-		return (this.value & BitField.valueOf(bitset)) !== 0;
+		return (this.value & BitSetUtils.valueOf(bitset)) !== 0;
 	}
 
 	get(index) {
 		assertTrue(isInteger(index), 'Illegal argument: parameter \'index\' is not an integer');
 		assertTrue(withinRange(index, 0, 31), 'Illegal argument: parameter \'index\' is out of bounds');
 
-		return (this.value >> index) & 1;
+		return new BitField().copy((this.value >> index) & 1);
 	}
 
 	getRange(from, to) {
@@ -177,6 +116,7 @@ class BitField {
 		assertTrue(isInteger(to), 'Illegal argument: parameter \'to\' is not an integer');
 		assertTrue(withinRange(from, 0, 31), 'Illegal argument: parameter \'from\' is out of bounds');
 		assertTrue(withinRange(to, 0, 31), 'Illegal argument: parameter \'to\' is out of bounds');
+		assertTrue(to > from, 'Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
 
 		const mask = (1 << (to - from)) - 1;
 		const bitField = new BitField();
@@ -186,13 +126,13 @@ class BitField {
 	}
 
 	test(...masks) {
-		const mask = BitField.combineMasks(...masks);
+		const mask = BitSetUtils.combineMasks(...masks);
 
 		return (this.value & mask) === mask;
 	}
 
 	testAny(...masks) {
-		const mask = BitField.combineMasks(...masks);
+		const mask = BitSetUtils.combineMasks(...masks);
 
 		return (this.value & mask) !== 0;
 	}
@@ -203,7 +143,7 @@ class BitField {
 
 		const bit = this.get(index);
 
-		return bit === Number(value);
+		return bit.valueOf() === Number(value);
 	}
 
 	testAll(value) {
@@ -225,7 +165,7 @@ class BitField {
 	}
 
 	set(value, ...masks) {
-		const mask = BitField.combineMasks(...masks);
+		const mask = BitSetUtils.combineMasks(...masks);
 
 		if (value > 0) {
 			this.value |= mask;
@@ -256,14 +196,19 @@ class BitField {
 		assertTrue(isInteger(to), 'Illegal argument: parameter \'to\' is not an integer');
 		assertTrue(withinRange(from, 0, 31), 'Illegal argument: parameter \'from\' is out of bounds');
 		assertTrue(withinRange(to, 0, 31), 'Illegal argument: parameter \'to\' is out of bounds');
+		assertTrue(to > from, 'Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
 
-		const mask = (1 << (to - from)) - 1;
+		let mask = (1 << (to - from)) - 1;
+
+		if (from > 0) {
+			mask *= 2 * from;
+		}
 
 		return this.set(value, mask);
 	}
 
 	flip(...masks) {
-		this.value ^= BitField.combineMasks(...masks);
+		this.value ^= BitSetUtils.combineMasks(...masks);
 
 		return this;
 	}
@@ -288,14 +233,19 @@ class BitField {
 		assertTrue(isInteger(to), 'Illegal argument: parameter \'to\' is not an integer');
 		assertTrue(withinRange(from, 0, 31), 'Illegal argument: parameter \'from\' is out of bounds');
 		assertTrue(withinRange(to, 0, 31), 'Illegal argument: parameter \'to\' is out of bounds');
+		assertTrue(to > from, 'Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
 
-		const mask = (1 << (to - from)) - 1;
+		let mask = (1 << (to - from)) - 1;
+
+		if (from > 0) {
+			mask *= 2 * from;
+		}
 
 		return this.flip(mask);
 	}
 
 	copy(bitset) {
-		this.value = BitField.valueOf(bitset);
+		this.value = BitSetUtils.valueOf(bitset);
 
 		return this;
 	}
@@ -350,7 +300,7 @@ class BitField {
 	}
 
 	equals(other) {
-		return this.value === BitField.valueOf(other);
+		return this.value === BitSetUtils.valueOf(other);
 	}
 
 	toArray() {
@@ -370,16 +320,6 @@ class BitField {
 		}
 
 		return array.reverse();
-	}
-
-	/**
-	 * Gets a BitArray copy of this BitField instance.
-	 *
-	 * @public
-	 * @returns {BitArray}
-	 */
-	toBitArray() {
-		throw new Error('Not yet implemented.');
 	}
 
 	toString() {
