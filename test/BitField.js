@@ -27,12 +27,10 @@ describe('BitField', () => {
 	describe('#copy()', () => {
 		it('should return a copy (clone) of the provided BitField', () => {
 			const copy1 = new BitField().copy(field);
-			const copy2 = BitField.copy(value);
 
 			expect(copy1.valueOf()).to.equal(field.valueOf());
 			expect(copy1).to.be.an.instanceof(BitField);
 			expect(field).not.to.equal(copy1);
-			expect(copy1.valueOf()).to.equal(copy2.valueOf());
 		});
 	});
 
@@ -53,8 +51,8 @@ describe('BitField', () => {
 	});
 
 	describe('#toArray()', () => {
-		it('should return an array of 0s and/or 1s', () => {
-			expect(field.toArray()).to.deep.equal(valueArray);
+		it('should return an array of booleans', () => {
+			expect(field.toArray()).to.deep.equal(valueArray.map(Boolean));
 		});
 	});
 
@@ -75,6 +73,7 @@ describe('BitField', () => {
 
 			expect(field.length).to.be.a('number');
 			expect(field.length).to.equal(length);
+			expect(BitField.lengthOf(field)).to.equal(length);
 			expect(new BitField().length).to.equal(1);
 			expect(dynamicField.length).to.equal(4);
 		});
@@ -103,8 +102,16 @@ describe('BitField', () => {
 	describe('#get()', () => {
 		it('should return bit at index', () => {
 			valueArrayReversed.forEach((bit, index) => {
-				expect(field.get(index)).to.equal(bit);
+				expect(field.get(index).equals(bit)).to.equal(true);
 			});
+		});
+
+		it('should throw if index is out of bounds', () => {
+			const bitField = new BitField();
+
+			expect(() => {
+				bitField.flipAt(32);
+			}).to.throw(Error);
 		});
 	});
 
@@ -113,6 +120,18 @@ describe('BitField', () => {
 			const val = valueArrayReversed.slice(2, 5).reverse().join('');
 
 			expect(field.getRange(2, 5).equals(parseInt(val, 2))).to.equal(true);
+		});
+
+		it('should throw if any index is out of bounds', () => {
+			const bitField = new BitField();
+
+			expect(() => {
+				bitField.getRange(32, 32);
+			}).to.throw(Error);
+
+			expect(() => {
+				bitField.getRange(0, 32);
+			}).to.throw(Error);
 		});
 	});
 
@@ -161,6 +180,14 @@ describe('BitField', () => {
 				expect(field.testAt(0, index)).to.equal(!isTrue);
 			});
 		});
+
+		it('should throw if index is out of bounds', () => {
+			const bitField = new BitField();
+
+			expect(() => {
+				bitField.flipAt(32);
+			}).to.throw(Error);
+		});
 	});
 
 	describe('#testAll()', () => {
@@ -203,49 +230,142 @@ describe('BitField', () => {
 
 	describe('#set()', () => {
 		it('should set bits to a specific value based on a bitmask', () => {
-			// TODO
+			const bitField = new BitField().copy(0b100);
+
+			bitField.set(1, 0b1010);
+			expect(bitField.valueOf()).to.equal(0b1110);
+
+			bitField.set(0, 0b1100);
+			expect(bitField.valueOf()).to.equal(0b10);
 		});
 	});
 
 	describe('#setAll()', () => {
 		it('should set all bits to a specific value', () => {
-			// TODO
+			const bitField = new BitField(3);
+
+			bitField.setAll(1);
+			expect(bitField.valueOf()).to.equal(0b111);
+
+			bitField.setAll(0);
+			expect(bitField.valueOf()).to.equal(0);
 		});
 	});
 
 	describe('#setAt()', () => {
 		it('should set bit to a specific value at a specific index', () => {
-			// TODO
+			const bitField = new BitField();
+
+			bitField.setAt(1, 3);
+			expect(bitField.valueOf()).to.equal(0b1000);
+
+			bitField.setAt(0, 3);
+			expect(bitField.valueOf()).to.equal(0);
+		});
+
+		it('should throw if index is out of bounds', () => {
+			const bitField = new BitField();
+
+			expect(() => {
+				bitField.flipAt(32);
+			}).to.throw(Error);
 		});
 	});
 
 	describe('#setRange()', () => {
 		it('should set bits to a specific value within a specific range', () => {
-			// TODO
+			const bitField = new BitField();
+
+			bitField.setRange(1, 1, 4);
+			expect(bitField.valueOf()).to.equal(0b1110);
+
+			bitField.setRange(0, 0, 3);
+			expect(bitField.valueOf()).to.equal(0b1000);
+		});
+
+		it('should throw if any index is out of bounds', () => {
+			const bitField = new BitField();
+
+			expect(() => {
+				bitField.setRange(32, 32);
+			}).to.throw(Error);
+
+			expect(() => {
+				bitField.setRange(0, 32);
+			}).to.throw(Error);
 		});
 	});
 
-	describe('#flip() | #toggle()', () => {
+	describe('#flip()', () => {
 		it('should flip bits based on a bitmask', () => {
-			// TODO
+			const bitField = new BitField();
+
+			bitField.flip(0b11011);
+			expect(bitField.valueOf()).to.equal(0b11011);
+
+			bitField.flip(0b1010);
+			expect(bitField.valueOf()).to.equal(0b10001);
 		});
 	});
 
 	describe('#flipAll()', () => {
 		it('should flip all bits of this with its\' length in consideration (if not dynamic)', () => {
-			// TODO
+			const bitField = new BitField();
+
+			bitField.flipAll();
+			expect(bitField.valueOf()).to.equal(1);
+
+			bitField.copy(0b1100);
+			bitField.flipAll();
+			expect(bitField.valueOf()).to.equal(0b11);
+
+			const bitField2 = new BitField(4);
+			bitField2.flipAll();
+			expect(bitField2.valueOf()).to.equal(0b1111);
 		});
 	});
 
 	describe('#flipAt()', () => {
 		it('should flip bit at a specific index', () => {
-			// TODO
+			const bitField = new BitField();
+
+			bitField.flipAt(3);
+			expect(bitField.valueOf()).to.equal(0b1000);
+
+			bitField.flipAt(3);
+			expect(bitField.valueOf()).to.equal(0);
+		});
+
+		it('should throw if index is out of bounds', () => {
+			const bitField = new BitField();
+
+			expect(() => {
+				bitField.flipAt(32);
+			}).to.throw(Error);
 		});
 	});
 
 	describe('#flipRange()', () => {
 		it('should flip bits within a specific range', () => {
-			// TODO
+			const bitField = new BitField();
+
+			bitField.flipRange(1, 4);
+			expect(bitField.valueOf()).to.equal(0b1110);
+
+			bitField.flipRange(0, 3);
+			expect(bitField.valueOf()).to.equal(0b1001);
+		});
+
+		it('should throw if any index is out of bounds', () => {
+			const bitField = new BitField();
+
+			expect(() => {
+				bitField.flipRange(32, 32);
+			}).to.throw(Error);
+
+			expect(() => {
+				bitField.flipRange(0, 32);
+			}).to.throw(Error);
 		});
 	});
 
@@ -262,5 +382,10 @@ describe('BitField', () => {
 		expect(() => {
 			BitField.deserialize('invalid');
 		}).to.throw(Error);
+
+		const bitField = BitField.deserialize(input);
+
+		expect(bitField.length).to.equal(5);
+		expect(bitField.valueOf()).to.equal(0b1101);
 	});
 });
