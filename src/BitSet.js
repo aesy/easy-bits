@@ -1,4 +1,8 @@
 /**
+ * @typedef {BitSet|Number} BitSetLike
+ */
+
+/**
  * A BitSet holds a sequence of bits and contains convenient methods for common bit operations.
  *
  * @interface BitSet
@@ -35,7 +39,7 @@
  * @function
  * @name BitSet#get
  * @param {Number} index
- * @returns {BitSet}
+ * @returns {Boolean}
  */
 
 /**
@@ -184,7 +188,7 @@
  */
 
 /**
- * Copies a bitsetlike value or instance.
+ * Copies a bitsetlike value or instance. Minimum length will be preserved.
  *
  * @function
  * @name BitSet#copy
