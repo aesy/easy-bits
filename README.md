@@ -1,12 +1,15 @@
 # Easy Bits
 
-[![Travis](https://img.shields.io/travis/easyfuckingpeasy/Easy-Bits.svg)](https://travis-ci.org/easyfuckingpeasy/Easy-Bits)
-[![bitHound Overall Score](https://www.bithound.io/github/easyfuckingpeasy/Easy-Bits/badges/score.svg)](https://www.bithound.io/github/easyfuckingpeasy/Easy-Bits)
-[![Coverage Status](https://coveralls.io/repos/github/easyfuckingpeasy/Easy-Bits/badge.svg?branch=master)](https://coveralls.io/github/easyfuckingpeasy/Easy-Bits?branch=master)
+[![npm](https://img.shields.io/npm/v/easy-bits.svg)](https://www.npmjs.com/package/easy-bits)
+[![Travis](https://img.shields.io/travis/aesy/Easy-Bits.svg)](https://travis-ci.org/aesy/Easy-Bits)
+[![bitHound Overall Score](https://www.bithound.io/github/aesy/Easy-Bits/badges/score.svg)](https://www.bithound.io/github/aesy/Easy-Bits)
+[![Coverage Status](https://coveralls.io/repos/github/aesy/Easy-Bits/badge.svg?branch=master)](https://coveralls.io/github/aesy/Easy-Bits?branch=master)
 [![xo code style](https://img.shields.io/badge/code%20style-%20XO-67d5c5.svg)](https://github.com/sindresorhus/xo)
-[![MIT license](https://img.shields.io/github/license/easyfuckingpeasy/Easy-Bits.svg)](https://github.com/easyfuckingpeasy/Easy-Bits/blob/master/LICENSE)
+[![MIT license](https://img.shields.io/github/license/aesy/Easy-Bits.svg)](https://github.com/aesy/Easy-Bits/blob/master/LICENSE)
 
 Easy to use Enums, BitFlags, BitFields, BitMasks and BitArrays for JavaScript.
+
+#### [API Reference](https://aesy.github.io/Easy-Bits/docs)
 
 ## Usage
 #### BitFlags + BitField:
@@ -26,11 +29,11 @@ configuration.testAll(options.OPTION1 | options.OPTION2); // false
 // Serialize
 const string = configuration.serialize();
 // Deserialize
-const config2 = configuration.deserialize(string);
+const configuration2 = BitFlags.deserialize(string);
 ```
 BitFields and BitArray are interchangeable, their APIs are identical (excluding conversion methods like 
 `BitArray#toBitField`). The only difference between them is how many flags they support (BitField is limited to 31 
-flags). This is due to how they internally store the data.
+flags) and their performance. This is due to how they internally store the data.
 
 #### Enums:
 ```js
@@ -44,9 +47,9 @@ console.log(Number(Day.FRIDAY)); // 4
 
 // Enums are immutable
 Day.MY_OWN_DAY = 1337;
+console.log(Day.MY_OWN_DAY); // still undefined
 Day.MONDAY = 42;
-console.log(Day.MY_OWN_DAY); // undefined
-console.log(Day.MONDAY);     // EnumConstant('MONDAY':0)
+console.log(Day.MONDAY);     // still EnumConstant('MONDAY':0)
 
 // Enums are iterable
 console.log(Object.keys(Day)); // ['MONDAY', 'TUESDAY' 'WEDNESDAY', 'THURSDAY', ...]
@@ -88,11 +91,8 @@ configuration.on(FontStyle.BOLD | FontStyle.UPPERCASE);
 configuration.off(OtherEnum.CONSTANT); // ERROR: argument type OtherEnum is not assignable to parameter type FontStyle
 ```
 
-## API Reference
-See the JSDoc comments in the source files.
-
 ## Installation
-From npm: run `npm install easy-bits --save` (as soon as it is published)
+From npm: run `npm install easy-bits --save`
 
 From source: download `easy-bits.min.js` in the `dist` folder
 
@@ -113,14 +113,14 @@ compiliation still works (`npm run build:prod`), linting pass without errors (`n
 (`npm run test`) beforehand. Check the list of issues below if you want to contribute but don't know where to start!
 
 ## Issues
-* No API reference. This should be auto-generated from the JSDoc comments in the source.
 * No performance tests.
 * No thorough environment tests.
+* Duplicate unit tests.
 * Accessing nonexistant EnumConstant properties does not throw an error. This is possible to solve with 
 [Proxies](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 but a polyfill for that would make lookups slow {{citation needed}}.
 * No auto-completion for Enum/BitFlag constants.
-* Configuration files should reside in the `config/` folder.
+* All configuration files should reside in the `config/` folder.
 * EnumConstants should interpolate as a string. For example, this fails:
 ```js
 const constant = new EnumConstant('name', 42);
