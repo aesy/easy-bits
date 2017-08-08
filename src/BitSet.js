@@ -9,8 +9,6 @@
  */
 
 /**
- * Gets the current length.
- *
  * @member {Number}
  * @name BitSet#length
  */
@@ -222,7 +220,7 @@
  */
 
 /**
- * Gets an value containing all the bits in this instance.
+ * Gets an array containing all the bits in this instance.
  *
  * @function
  * @name BitSet#toArray

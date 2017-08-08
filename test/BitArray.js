@@ -22,7 +22,7 @@ describe('BitArray', () => {
 	});
 
 	describe('.fromArray()', () => {
-		it('should be initialize from an value, no matter what objects are in it', () => {
+		it('should be initialize from an array, no matter what objects are in it', () => {
 			const array = [1, 0, [], {}, 'a', '', undefined, null, true, false];
 			const bitArray = BitArray.fromArray(array);
 
@@ -61,7 +61,7 @@ describe('BitArray', () => {
 	});
 
 	describe('#toArray()', () => {
-		it('should return an value of booleans', () => {
+		it('should return an array of booleans', () => {
 			const bitArray = new BitArray(5).copy(0b1001);
 			const asArray = [false, true, false, false, true];
 

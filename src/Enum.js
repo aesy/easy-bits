@@ -41,7 +41,7 @@ class Enum extends EnumBase {
 	}
 
 	/**
-	 * Produces a new instance from an value.
+	 * Produces a new instance from an array.
 	 *
 	 * @public
 	 * @static

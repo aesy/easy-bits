@@ -26,7 +26,7 @@ class BitArray {
 	 * @public
 	 * @constructor
 	 * @param {Number} [minLength = 1] The minimum length of the bitArray.
-	 * @throws {Error} In case 'minLength' is smaller than zero.
+	 * @throws {Error} In case 'minLength' is equals to or smaller than zero.
 	 */
 	constructor(minLength) {
 		assertTrue(minLength === undefined || minLength > 0, 'Illegal argument: parameter \'minLength\' must be larger than 0');
@@ -66,7 +66,7 @@ class BitArray {
 	}
 
 	/**
-	 * Produces a new BitArray instance from an value. The value may contain anything, the resulting bitArray is based
+	 * Produces a new BitArray instance from a value. The value may contain anything, the resulting bitArray is based
 	 * on the truthiness of the value contents.
 	 * Example: [true, 0, {}] will yield 101.
 	 *

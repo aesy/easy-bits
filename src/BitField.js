@@ -36,8 +36,8 @@ class BitField {
 	 * @public
 	 * @constructor
 	 * @param {Number} [minLength = 1] The minimum length of the bitfield.
-     * @throws {Error} In case length exceeds 31 (Consider using BitArray instead if u may reach this limit).
-     * @throws {Error} In case 'minLength' is smaller than zero.
+     * @throws {Error} In case length exceeds 31 (consider using BitArray instead if u may reach this limit).
+     * @throws {Error} In case 'minLength' is equals to or smaller than zero.
 	 */
 	constructor(minLength) {
 		assertTrue(minLength === undefined || minLength > 0, 'Illegal argument: parameter \'minLength\' must be larger than 0');
@@ -80,14 +80,14 @@ class BitField {
 	}
 
 	/**
-	 * Produces a new BitField instance from an value. The value may contain anything, the resulting bitfield is based
+	 * Produces a new BitField instance from an array. The value may contain anything, the resulting bitfield is based
 	 * on the truthiness of the value contents.
 	 * Example: [true, 0, {}] will yield 101.
 	 *
 	 * @public
 	 * @static
 	 * @param {Array<any>} array
-	 * @throws {Error} In case length exceeds 31 (Consider using BitArray instead if u may reach this limit).
+	 * @throws {Error} In case length exceeds 31 (consider using BitArray instead if u may reach this limit).
 	 * @returns {BitField} A new BitField instance.
 	 */
 	static fromArray(array) {

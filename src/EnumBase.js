@@ -101,13 +101,13 @@ class EnumBase {
 	 */
 	static deserialize(input) {
 		if (typeof input !== 'string') {
-			throw new Error('Failed to deserialize input.');
+			throw new Error('Failed to deserialize input');
 		}
 
 		const values = input.split(',').map(value => value.trim());
 
 		if (values::includes('')) {
-			throw new Error('Failed to deserialize input. Invalid enum <<empty>> found.');
+			throw new Error('Failed to deserialize input - invalid enum <<empty>> found');
 		}
 
 		return new this(...values);
