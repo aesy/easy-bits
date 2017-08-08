@@ -9,7 +9,7 @@
 
 Easy to use Enums, BitFlags, BitFields, BitMasks and BitArrays for JavaScript.
 
-#### [API Reference](https://aesy.github.io/Easy-Bits/docs)
+### [API Reference](https://aesy.github.io/Easy-Bits/)
 
 ## Usage
 #### BitFlags + BitField:
@@ -31,9 +31,9 @@ const string = configuration.serialize();
 // Deserialize
 const configuration2 = BitFlags.deserialize(string);
 ```
-BitFields and BitArray are interchangeable, their APIs are identical (excluding conversion methods like 
-`BitArray#toBitField`). The only difference between them is how many flags they support (BitField is limited to 31 
-flags) and their performance. This is due to how they internally store the data.
+BitFields and BitArrays are interchangeable, their APIs are identical. 
+The only difference between them is how many flags they support (BitField is limited to 31 flags) and their performance. 
+This is due to how they internally store the data.
 
 #### Enums:
 ```js
@@ -92,14 +92,14 @@ configuration.off(OtherEnum.CONSTANT); // ERROR: argument type OtherEnum is not 
 ```
 
 ## Installation
-From npm: run `npm install easy-bits --save`
+From npm: run `npm install easy-bits --save`.
 
-From source: download `easy-bits.min.js` in the `dist` folder
+From source: download `easy-bits.min.js` in the `dist` folder.
 
 #### and then import
-ES6 style: `import { Enum } from 'easy-bits';`
+ES6 style: `import { Enum } from 'easy-bits';`.
 
-or link in HTML: `<script src="easy-bits.min.js"></script>`
+or link in HTML: `<script src="easy-bits.min.js"></script>`.
 
 ## Support
 This library uses polyfills that doesn't pollute the global namespace. It has not been thoroughly tested in various 
