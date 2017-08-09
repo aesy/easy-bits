@@ -22,7 +22,7 @@ configuration.on(options.OPTION1, options.OPTION3);  // Same as the above
 
 configuration.test(options.OPTION1); // true
 configuration.test(options.OPTION2); // false
-configuration.test(options.OPTION2); // true
+configuration.test(options.OPTION3); // true
 configuration.testAny(options.OPTION1 | options.OPTION2); // true
 configuration.testAll(options.OPTION1 | options.OPTION2); // false
 
@@ -70,6 +70,8 @@ console.log(Day.MONDAY instanceof Day);         // true
 console.log(Day.MONDAY === OtherEnum.CONSTANT); // false
 console.log(Day.MONDAY == OtherEnum.CONSTANT);  // true, if their ordinal values are the same
 ```
+
+Note that the examples above uses ECMAScript 6 features.
 
 #### TypeScript
 ```ts
