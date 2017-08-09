@@ -76,7 +76,7 @@ class BitField {
 	static combineMasks(...masks) {
 		return masks.reduce((prev, curr) =>
 			prev | curr
-		);
+		, 0);
 	}
 
 	/**
@@ -86,7 +86,7 @@ class BitField {
 	 *
 	 * @public
 	 * @static
-	 * @param {Array<any>} array
+	 * @param {Array<*>} array
 	 * @throws {Error} In case length exceeds 31 (consider using BitArray instead if u may reach this limit).
 	 * @returns {BitField} A new BitField instance.
 	 */
@@ -307,7 +307,7 @@ class BitField {
 	 * @returns {BitField} A new instance.
 	 */
 	static deserialize(input) {
-		if (isNaN(input)) {
+		if (isNaN(Number(input))) {
 			throw new Error('Failed to deserialize input');
 		}
 

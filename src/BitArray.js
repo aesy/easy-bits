@@ -72,7 +72,7 @@ class BitArray {
 	 *
 	 * @public
 	 * @static
-	 * @param {Array<any>} array
+	 * @param {Array<*>} array
 	 * @returns {BitArray} A new BitArray instance.
 	 */
 	static fromArray(array) {
