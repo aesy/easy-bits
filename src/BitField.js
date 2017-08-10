@@ -74,9 +74,7 @@ class BitField {
 	 * @returns {Number} The resulting mask.
 	 */
 	static combineMasks(...masks) {
-		return masks.reduce((prev, curr) =>
-			prev | curr
-		, 0);
+		return masks.reduce((prev, curr) => prev | curr, 0);
 	}
 
 	/**
