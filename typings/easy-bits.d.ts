@@ -1,11 +1,11 @@
 export type Bit = 0 | 1 | false | true;
 
-export interface BitSet<T extends BitSet | number> {
+export interface BitSet<T extends number> {
 	readonly length: number;
 	count(): number;
 	intersects(bitset: T): boolean;
 	get(index: number): boolean;
-	getRange(from: number, to: number): BitSet<T>;
+	getRange(from: number, to: number): this;
 	test(...masks: T[]): boolean;
 	testAny(...masks: T[]): boolean;
 	testAt(value: Bit, index: number): boolean;
@@ -26,28 +26,28 @@ export interface BitSet<T extends BitSet | number> {
 	toString(): string;
 }
 
-interface BitArray<T> extends BitSet<T> {
+interface BitArray<T extends number> extends BitSet<T> {
 	copy(bitset: T): BitArray<T>;
 	equals(other: BitArray<T>): boolean;
 }
 
 interface BitArrayConstructor {
-	new <T>(minLength: number = 1): BitArray<T>;
-	fromArray<T>(array: any[]): BitArray<T>;
-	deserialize<T>(input: string): BitArray<T>;
+	new <T extends number>(minLength?: number): BitArray<T>;
+	fromArray<T extends number>(array: any[]): BitArray<T>;
+	deserialize<T extends number>(input: string): BitArray<T>;
 }
 
 export declare const BitArray: BitArrayConstructor;
 
-interface BitField<T> extends BitSet<T> {
+interface BitField<T extends number> extends BitSet<T> {
 	copy(bitset: T): BitField<T>;
 	equals(other: BitField<T>): boolean;
 }
 
 interface BitFieldConstructor {
-	new <T>(minLength: number = 1): BitField<T>;
-	fromArray<T>(array: any[]): BitField<T>;
-	deserialize<T>(input: string): BitField<T>;
+	new <T extends number>(minLength?: number): BitField<T>;
+	fromArray<T extends number>(array: any[]): BitField<T>;
+	deserialize<T extends number>(input: string): BitField<T>;
 }
 
 export declare const BitField: BitFieldConstructor;
