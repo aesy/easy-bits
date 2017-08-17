@@ -7,7 +7,7 @@
 [![xo code style](https://img.shields.io/badge/code%20style-%20XO-67d5c5.svg)](https://github.com/sindresorhus/xo)
 [![MIT license](https://img.shields.io/github/license/aesy/Easy-Bits.svg)](https://github.com/aesy/Easy-Bits/blob/master/LICENSE)
 
-Easy to use Enums, BitFlags, BitFields, BitMasks and BitArrays for JavaScript.
+Enums, BitFlags, BitFields, BitMasks and BitArrays for JavaScript & TypeScript.
 
 ### [API Reference](https://aesy.github.io/Easy-Bits/)
 
