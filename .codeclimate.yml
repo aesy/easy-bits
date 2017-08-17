@@ -1,0 +1,14 @@
+engines:
+  eslint:
+    enabled: true
+    config: # nested prop is intentional
+      config: config/.eslintrc.json
+ratings:
+  paths:
+    - "src/**/*"
+    - "test/**/*"
+exclude_paths:
+  - "config/"
+  - "dist/"
+  - "docs/"
+  - "typings/"
