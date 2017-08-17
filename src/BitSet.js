@@ -195,7 +195,7 @@
  */
 
 /**
- * Gets the integer value of this bitsetlike value or instance.
+ * Gets the integer value of this instance.
  *
  * @function
  * @name BitSet#valueOf

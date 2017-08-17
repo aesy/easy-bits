@@ -22,7 +22,7 @@ describe('BitArray', () => {
 	});
 
 	describe('.fromArray()', () => {
-		it('should be initialize from an array, no matter what objects are in it', () => {
+		it('should be initializable from an array, no matter what objects are in it', () => {
 			const array = [1, 0, [], {}, 'a', '', undefined, null, true, false];
 			const bitArray = BitArray.fromArray(array);
 
@@ -35,8 +35,8 @@ describe('BitArray', () => {
 			const bitArray = new BitArray(10).copy(0b0110001101);
 			const copy = new BitArray().copy(bitArray);
 
-			expect(copy.valueOf()).to.equal(bitArray.valueOf());
 			expect(copy).to.be.an.instanceof(BitArray);
+			expect(copy.valueOf()).to.equal(bitArray.valueOf());
 			expect(bitArray).not.to.equal(copy);
 		});
 	});
@@ -46,8 +46,8 @@ describe('BitArray', () => {
 			const bitArray = new BitArray(10).copy(0b0110001101);
 			const copy = bitArray.clone();
 
-			expect(copy.valueOf()).to.equal(bitArray.valueOf());
 			expect(copy).to.be.an.instanceof(BitArray);
+			expect(copy.valueOf()).to.equal(bitArray.valueOf());
 			expect(bitArray).not.to.equal(copy);
 		});
 	});
@@ -312,22 +312,28 @@ describe('BitArray', () => {
 	});
 
 	it('should be serializable', () => {
-		const input = '01101';
-		const output = new BitArray(5).copy(0b1101).serialize();
+		const input1 = '01101';
+		const output1 = new BitArray(5).copy(0b1101).serialize();
+		const input2 = '1101';
+		const output2 = new BitArray().copy(0b1101).serialize();
 
-		expect(output).to.equal(input);
+		expect(output1).to.equal(input1);
+		expect(output2).to.equal(input2);
 
 		expect(() => {
-			BitArray.deserialize(input);
+			BitArray.deserialize(input1);
 		}).to.not.throw(Error);
 
 		expect(() => {
 			BitArray.deserialize('invalid');
 		}).to.throw(Error);
 
-		const bitArray = BitArray.deserialize(input);
+		const bitArray1 = BitArray.deserialize(input1);
+		const bitArray2 = BitArray.deserialize(input2);
 
-		expect(bitArray.length).to.equal(5);
-		expect(bitArray.valueOf()).to.equal(0b1101);
+		expect(bitArray1.length).to.equal(5);
+		expect(bitArray1.valueOf()).to.equal(0b1101);
+		expect(bitArray2.length).to.equal(4);
+		expect(bitArray2.valueOf()).to.equal(0b1101);
 	});
 });

@@ -273,7 +273,7 @@ class BitArray {
 	copy(bitset) {
 		this.value::fill(false);
 
-		if (typeof bitset === 'object') {
+		if (bitset instanceof Object) {
 			const array = bitset.toArray().reverse();
 			this.value.splice(0, array.count, ...array);
 		} else {
@@ -289,6 +289,13 @@ class BitArray {
 		return this;
 	}
 
+	/**
+	 * Gets the integer value of this instance.
+	 *
+	 * @public
+	 * @throws {Error} In case this instance cannot be represented by an integer (by exceeding 31 bits).
+	 * @returns {Number}
+	 */
 	valueOf() {
 		if (this.length > 31) {
 			throw new Error('Number exceeds 31 bits');

@@ -11,7 +11,7 @@ describe('BitField', () => {
 	});
 
 	describe('.fromArray()', () => {
-		it('should be initialize from an array, no matter what objects are in it', () => {
+		it('should be initializable from an array, no matter what objects are in it', () => {
 			const array = [1, 0, [], {}, 'a', '', undefined, null, true, false];
 			const bitField = BitField.fromArray(array);
 
@@ -24,8 +24,8 @@ describe('BitField', () => {
 			const bitField = new BitField(10).copy(0b0110001101);
 			const copy = new BitField().copy(bitField);
 
-			expect(copy.valueOf()).to.equal(bitField.valueOf());
 			expect(copy).to.be.an.instanceof(BitField);
+			expect(copy.valueOf()).to.equal(bitField.valueOf());
 			expect(bitField).not.to.equal(copy);
 		});
 	});
@@ -35,8 +35,8 @@ describe('BitField', () => {
 			const bitField = new BitField(10).copy(0b0110001101);
 			const copy = bitField.clone();
 
-			expect(copy.valueOf()).to.equal(bitField.valueOf());
 			expect(copy).to.be.an.instanceof(BitField);
+			expect(copy.valueOf()).to.equal(bitField.valueOf());
 			expect(bitField).not.to.equal(copy);
 		});
 	});
@@ -369,22 +369,28 @@ describe('BitField', () => {
 	});
 
 	it('should be serializable', () => {
-		const input = '01101';
-		const output = new BitField(5).copy(0b1101).serialize();
+		const input1 = '01101';
+		const output1 = new BitField(5).copy(0b1101).serialize();
+		const input2 = '1101';
+		const output2 = new BitField().copy(0b1101).serialize();
 
-		expect(output).to.equal(input);
+		expect(output1).to.equal(input1);
+		expect(output2).to.equal(input2);
 
 		expect(() => {
-			BitField.deserialize(input);
+			BitField.deserialize(input1);
 		}).to.not.throw(Error);
 
 		expect(() => {
 			BitField.deserialize('invalid');
 		}).to.throw(Error);
 
-		const bitField = BitField.deserialize(input);
+		const bitField1 = BitField.deserialize(input1);
+		const bitField2 = BitField.deserialize(input2);
 
-		expect(bitField.length).to.equal(5);
-		expect(bitField.valueOf()).to.equal(0b1101);
+		expect(bitField1.length).to.equal(5);
+		expect(bitField1.valueOf()).to.equal(0b1101);
+		expect(bitField2.length).to.equal(4);
+		expect(bitField2.valueOf()).to.equal(0b1101);
 	});
 });

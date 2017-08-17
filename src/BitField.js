@@ -58,7 +58,7 @@ class BitField {
 	 * @returns {Number} The value.
 	 */
 	static valueOf(value) {
-		if (typeof value === 'object') {
+		if (value instanceof Object) {
 			return value.valueOf();
 		}
 
@@ -329,9 +329,9 @@ class BitField {
 	}
 
 	toArray() {
+		const array = [];
 		let value = this.value;
 		let length = 0;
-		let array = [];
 
 		while (value > 0) {
 			length++;
@@ -339,9 +339,10 @@ class BitField {
 			value >>= 1;
 		}
 
-		if (this.minLength) {
-			const filler = new Array(this.minLength - (length || 1))::fill(false);
-			array = array.concat(filler);
+		if (this.minLength > length) {
+			const filler = new Array(this.minLength - length)::fill(false);
+
+			array.push(...filler);
 		}
 
 		return array.reverse();
