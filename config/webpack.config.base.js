@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
 	context: path.resolve(__dirname, '..'),
 	entry: {
-		"easy-bits.min": "./src/index.js",
+		'easy-bits.min': './src/index.js',
 	},
 	output: {
 		path: path.resolve(__dirname, '../dist/'),
@@ -20,14 +20,18 @@ module.exports = {
 			test: /\.(js)$/,
 			exclude: /node_modules/,
 			use: [{
-				loader: 'babel-loader'
+				loader: 'babel-loader',
+				options: {
+					'presets': ['es2015'],
+					'plugins': [
+						'transform-class-properties',
+						'transform-function-bind'
+					]
+				}
 			}]
 		}]
 	},
 	plugins: [
 		new webpack.NoEmitOnErrorsPlugin()
-	],
-	performance: {
-		hints: false
-	}
+	]
 };
