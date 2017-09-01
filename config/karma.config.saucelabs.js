@@ -66,9 +66,9 @@ module.exports = (config) => {
 		files: ['test/**/*.js'],
 		frameworks: ['mocha', 'chai'],
 		preprocessors: {
-			'test/**/*.js': ['webpack']
+			'test/**/*.js': ['webpack', 'sourcemap']
 		},
-		reporters: ['mocha', 'sourcemap', 'coverage', 'saucelabs'],
+		reporters: ['mocha', 'coverage', 'saucelabs'],
 		sauceLabs: {
 			testName: pkg.name,
 			recordScreenshots: false

@@ -17,7 +17,7 @@
 	"types": "typings/easy-bits.d.ts",
 	"scripts": {
 		"build:dev": "webpack --config ./config/webpack.config.development.js",
-		"build:prod": "npm run clean && webpack --config ./config/webpack.config.production.js",
+		"build:prod": "npm run build:clean && webpack --config ./config/webpack.config.production.js",
 		"build:watch": "npm run build:dev -- --watch",
 		"build:clean": "rimraf ./dist ./.tmp",
 		"clean": "npm run build:clean && npm run test:clean",
@@ -61,7 +61,7 @@
 		"mocha-webpack": "^0.7.0",
 		"nyc": "^11.1.0",
 		"rimraf": "^2.6.1",
-		"webpack": "^3.5.5",
+		"webpack": "^2.1.0-beta.15",
 		"webpack-merge": "^4.1.0"
 	}
 }
