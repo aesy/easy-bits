@@ -1,3 +1,6 @@
+// Polyfills
+import 'core-js/fn/array/iterator';
+
 const { describe, it } = global;
 import { expect } from 'chai';
 import BitArray from '../src/BitArray';
@@ -81,7 +84,7 @@ describe('BitFlags', () => {
 	});
 
 	it('should recognize its\' flags as instances', () => {
-		expect(flags[flagArray[0]]).to.be.an.instanceof(flags);
+		expect(flags[flagArray[0]] instanceof flags).to.equal(true);
 	});
 
 	describe('.fromArray()', () => {

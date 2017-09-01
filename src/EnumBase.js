@@ -1,5 +1,4 @@
 // Polyfills
-import Symbol from 'core-js/library/es6/symbol';
 import includes from 'core-js/library/fn/array/virtual/includes';
 import defineProperty from 'core-js/library/fn/object/define-property';
 import values from 'core-js/library/fn/object/values';

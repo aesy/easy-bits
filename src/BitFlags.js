@@ -1,4 +1,5 @@
 // Polyfills
+import iterator from 'core-js/library/fn/array/virtual/iterator';
 import freeze from 'core-js/library/fn/object/freeze';
 import defineProperty from 'core-js/library/fn/object/define-property';
 
@@ -35,7 +36,7 @@ class BitFlags extends EnumBase {
 		const flags = {};
 		let bitValue = 1;
 
-		for (const flag of constants) {
+		for (const flag of constants::iterator()) {
 			flags[flag] = new EnumConstant(flag, bitValue);
 
 			Object::defineProperty(this, flag, {

@@ -6,5 +6,5 @@ module.exports = merge.smart({
 		devtoolModuleFilenameTemplate: '[absolute-resource-path]',
 		devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
 	},
-	devtool: 'inline-cheap-module-source-map'
+	devtool: 'inline-source-map'
 }, config);

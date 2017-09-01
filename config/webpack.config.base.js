@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
 	context: path.resolve(__dirname, '..'),
 	entry: {
-		'easy-bits.min': './src/index.js',
+		'easy-bits.min': './src/index.js'
 	},
 	output: {
 		path: path.resolve(__dirname, '../dist/'),
@@ -32,6 +32,9 @@ module.exports = {
 		}]
 	},
 	plugins: [
-		new webpack.NoEmitOnErrorsPlugin()
+		new webpack.NoEmitOnErrorsPlugin(),
+		new webpack.ProvidePlugin({
+			Symbol: 'core-js/library/es6/symbol'
+		})
 	]
 };
