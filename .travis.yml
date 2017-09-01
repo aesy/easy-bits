@@ -2,12 +2,18 @@ sudo: false
 language: node_js
 node_js:
   - "6"
+  - "5"
+  - "4"
+  - "3"
+  - "2"
+  - "1"
 install:
     - npm i
 script:
     - npm run build:prod
     - npm run lint
-    - npm run test
+    - npm run test:node
+    - npm run test:browser
     - npm run test:coverage:check
 after_success:
     - npm run test:coverage:report
