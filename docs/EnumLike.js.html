@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BitFlags.js - Documentation</title>
+    <title>EnumLike.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">BitFlags.js</h1>
+    <h1 class="page-title">EnumLike.js</h1>
     
 
     
@@ -37,179 +37,70 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// Polyfills
-import includes from 'core-js/library/fn/array/virtual/includes';
-import iterator from 'core-js/library/fn/array/virtual/iterator';
-import values from 'core-js/library/fn/object/values';
-
-import BitArray from './BitArray';
-import BitField from './BitField';
-import EnumConstant from './EnumConstant';
+            <pre class="prettyprint source linenums"><code>/**
+ * An object with enum-like properties.
+ *
+ * @private
+ * @interface EnumLike
+ * @extends {Iterable}
+ */
 
 /**
- * A BitFlags instance consists of a set of predefined values, each representing a binary digit that acts as a flag
- * to enable or disable bits in a BitSet. These values are accessible directly on the instance.
- *
- * A NONE property is always available on the instance.
- *
- * @public
- * @class
- * @implements {EnumLike}
+ * @readonly
+ * @member {Number}
+ * @name EnumLike#length
  */
-class BitFlags {
-	/**
-	 * @public
-	 * @readonly
-	 * @member {EnumConstant}
-	 */
-	NONE;
 
-	/**
-	 * The amount of values/constants in this instance, not including 'NONE'.
-	 *
-	 * @public
-	 * @readonly
-	 * @member {Number}
-	 */
-	length;
+/**
+ * Iterates through this instances' values with a callback method.
+ *
+ * @function
+ * @name EnumLike#forEach
+ * @param {EnumLikeIteratorCallback} callback
+ * @see EnumLikeIteratorCallback
+ */
 
-	/**
-	 * @public
-	 * @constructor
-	 * @param {...String} [constants]
-	 */
-	constructor(...constants) {
-		const flags = {};
-		let bitValue = 1;
-		let length = 0;
+/**
+ * Callback used in EnumLike#forEach.
+ *
+ * @callback EnumLikeIteratorCallback
+ * @param {EnumConstant} value
+ * @param {String} name
+ * @param {EnumLike} instance
+ */
 
-		for (const flag of constants::iterator()) {
-			flags[flag] = new EnumConstant(flag, bitValue);
+/**
+ * Gets the values/constants of this instance.
+ *
+ * @function
+ * @name EnumLike#values
+ * @returns {Array&lt;EnumConstant>} The values/constants of this instance.
+ */
 
-			Object.defineProperty(this, flag, {
-				enumerable: true,
-				get() {
-					return flags[flag];
-				}
-			});
+/**
+ * Checks whether a value belongs to this instance.
+ *
+ * @function
+ * @name EnumLike#has
+ * @param {EnumConstant} value
+ * @returns {Boolean}
+ */
 
-			bitValue &lt;&lt;= 1;
-			length++;
-		}
+/**
+ * Serializes this instance.
+ *
+ * @function
+ * @name EnumLike#serialize
+ * @returns {String}
+ */
 
-		Object.defineProperty(this, 'NONE', {
-			value: new EnumConstant('NONE', 0),
-			enumerable: false
-		});
-
-		Object.defineProperty(this, 'length', {
-			value: length,
-			writable: false,
-			enumerable: false
-		});
-
-		Object.freeze(this);
-	}
-
-	/**
-	 * Produces a new instance from an array.
-	 *
-	 * @public
-	 * @static
-	 * @param {Array&lt;String>} array
-	 * @returns {BitFlags} A new instance.
-	 */
-	static fromArray(array) {
-		return new this(...array);
-	}
-
-	/**
-	 * Deserializes a string and returns a new instance.
-	 *
-	 * @public
-	 * @static
-	 * @param {String} input
-	 * @throws {Error} In case input could not be parsed.
-	 * @returns {BitFlags} A new instance.
-	 */
-	static deserialize(input) {
-		if (typeof input !== 'string') {
-			throw new Error('Failed to deserialize input');
-		}
-
-		const values = input.split(',').map(value => value.trim());
-
-		if (values::includes('')) {
-			throw new Error('Failed to deserialize input - invalid enum &lt;&lt;empty>> found');
-		}
-
-		return new BitFlags(...values);
-	}
-
-	forEach(callback) {
-		this.values().forEach(value => {
-			callback(value, value.name, this);
-		});
-	}
-
-	values() {
-		return Object::values(this)
-			.sort((a, b) => a.ordinal - b.ordinal);
-	}
-
-	has(value) {
-		return this.values()::includes(value);
-	}
-
-	serialize() {
-		return this.values()
-			.map(constant => constant.name)
-			.toString();
-	}
-
-	[Symbol.iterator]() {
-		const arr = this.values();
-		let index = 0;
-
-		return {
-			next() {
-				const value = arr[index];
-				index++;
-
-				return {
-					value,
-					done: index > arr.length
-				};
-			}
-		};
-	}
-
-	/**
-	 * Produces a BitField instance with a length based on the amount of constants in this BitFlags instance.
-	 *
-	 * @public
-	 * @returns {BitField} A new instance.
-	 */
-	createBitField() {
-		return new BitField(this.length);
-	}
-
-	/**
-	 * Produces a BitArray instance with a length based on the amount of constants in this BitFlags instance.
-	 *
-	 * @public
-	 * @returns {BitArray} A new instance.
-	 */
-	createBitArray() {
-		return new BitArray(this.length);
-	}
-
-	toString() {
-		return `BitFlags(length:${this.length})`;
-	}
-}
-
-export default BitFlags;
+/**
+ * Gets a string representation of this instance.
+ *
+ * @function
+ * @name EnumLike#toString
+ * @returns {String} A string representation of this instance.
+ */
 </code></pre>
         </article>
     </section>

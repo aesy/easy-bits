@@ -7,8 +7,6 @@
 [![xo code style](https://img.shields.io/badge/code%20style-%20XO-67d5c5.svg)](https://github.com/sindresorhus/xo)
 [![MIT license](https://img.shields.io/github/license/aesy/Easy-Bits.svg)](https://github.com/aesy/Easy-Bits/blob/master/LICENSE)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/easypeasy.svg)](https://saucelabs.com/u/easypeasy)
-
 Enums, BitFlags, BitFields, BitMasks and BitArrays for JavaScript & TypeScript.
 
 ### [API Reference](https://aesy.github.io/Easy-Bits/)
@@ -105,10 +103,11 @@ ES2015 style: `import { Enum } from 'easy-bits';`.
 or link in HTML: `<script src="easy-bits.min.js"></script>`.
 
 ## Support
-Easy-Bits uses polyfills that doesn't pollute the global namespace. 
-The following environments are tested and supported: 
+Easy-Bits uses polyfills that doesn't pollute the global namespace in order to support the following environments: 
 
-`Chrome 26+` `Firefox 4+` `Safari 6+` `Opera 12+` `Internet Explorer 8+` `Edge` `NodeJS 4+`
+`Chrome 26+` `Firefox 4+` `Safari 6+` `Opera 12+` `Internet Explorer 9+` `Edge` `NodeJS 4+`
+
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/easypeasy.svg)](https://saucelabs.com/u/easypeasy)
 
 ## Contribute
 Use the [issue tracker](https://github.com/aesy/Easy-Bits/issues) to report bugs or make feature requests. 

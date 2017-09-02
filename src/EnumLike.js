@@ -28,7 +28,6 @@
  * @param {EnumConstant} value
  * @param {String} name
  * @param {EnumLike} instance
- * @see EnumLike#forEach
  */
 
 /**
