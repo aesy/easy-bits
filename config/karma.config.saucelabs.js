@@ -5,13 +5,16 @@ const customLaunchers = Object.assign({},
 	...saucelabs(['OS X 10.10'], ['safari'], [8]),
 	...saucelabs(['OS X 10.12'], ['safari'], [10]),
 	...saucelabs(['OS X 10.12'], ['firefox'], [4]),
-	...saucelabs(['Linux'], ['firefox'], [28, 45]),
-	...saucelabs(['Linux'], ['chrome'], [26, 48]),
+	...saucelabs(['OS X 10.12'], ['chrome'], [48]),
+	...saucelabs(['Linux'], ['firefox'], [28]),
+	...saucelabs(['Linux'], ['chrome'], [26]),
 	...saucelabs(['Linux'], ['opera'], [12]),
 	...saucelabs(['Windows 7'], ['firefox'], [54]),
-	...saucelabs(['Windows 7'], ['internet explorer'], [8, 9, 10, 11]),
+	...saucelabs(['Windows 7'], ['internet explorer'], [9, 10, 11]),
+	...saucelabs(['Windows 7'], ['chrome'], [38]),
 	...saucelabs(['Windows 10'], ['microsoftedge'], [13, 15]),
-	...saucelabs(['Windows 10'], ['chrome'], [38, 60])
+	...saucelabs(['Windows 10'], ['chrome'], [60]),
+	...saucelabs(['Windows 10'], ['firefox'], [45])
 );
 
 function saucelabs(platforms, browsers, versions) {
@@ -46,11 +49,6 @@ function cartesianProduct() {
 	}, [[]]);
 }
 
-function range(from, to) {
-	return Array.prototype.apply(null, new Array(to - from + 1))
-		.map((element, index) => index + from);
-}
-
 module.exports = (config) => {
 	config.set({
 		basePath: '../',
@@ -66,14 +64,11 @@ module.exports = (config) => {
 		reporters: ['mocha', 'saucelabs'],
 		sauceLabs: {
 			testName: pkg.name,
-			recordScreenshots: false
+			recordScreenshots: false,
+			build: `TRAVIS #${process.env.TRAVIS_BUILD_NUMBER} (${process.env.TRAVIS_BUILD_ID})`,
+			tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER
 		},
 		singleRun: true,
 		webpack: require('./webpack.config.development')
 	});
-
-	if (process.env.TRAVIS) {
-		config.sauceLabs.build = `TRAVIS #${process.env.TRAVIS_BUILD_NUMBER} (${process.env.TRAVIS_BUILD_ID})`;
-		config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
-	}
 };

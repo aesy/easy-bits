@@ -1,11 +1,13 @@
 sudo: false
+notifications:
+  email: false
 language: node_js
 node_js:
-  - "8"
-  - "7"
-  - "6"
-  - "5"
-  - "4"
+  - 8
+  - 7
+  - 6
+  - 5
+  - 4
 before_install:
   - npm i -g npm@latest
 install:
@@ -14,15 +16,13 @@ jobs:
   include:
     - stage: test:coverage
       script:
-        - npm run test:node
+        - npm run test
         - npm run test:coverage:check
       after_success:
         - npm run test:coverage:report
     - stage: test:browser
       script:
-        - npm run test:browser
+        - karma start ./config/karma.config.saucelabs.js
 script:
   - npm run build:prod
-  - npm run test:node
-notifications:
-  email: false
+  - npm run test
