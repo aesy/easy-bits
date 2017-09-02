@@ -1,6 +1,4 @@
 // Polyfills
-import defineProperty from 'core-js/library/fn/object/define-property';
-import freeze from 'core-js/library/fn/object/freeze';
 import includes from 'core-js/library/fn/array/virtual/includes';
 import iterator from 'core-js/library/fn/array/virtual/iterator';
 import values from 'core-js/library/fn/object/values';
@@ -37,7 +35,7 @@ class Enum {
 		for (const flag of constants::iterator()) {
 			flags[flag] = new EnumConstant(flag, bitValue);
 
-			Object::defineProperty(this, flag, {
+			Object.defineProperty(this, flag, {
 				enumerable: true,
 				get() {
 					return flags[flag];
@@ -48,13 +46,13 @@ class Enum {
 			length++;
 		}
 
-		Object::defineProperty(this, 'length', {
+		Object.defineProperty(this, 'length', {
 			value: length,
 			writable: false,
 			enumerable: false
 		});
 
-		Object::freeze(this);
+		Object.freeze(this);
 	}
 
 	/**

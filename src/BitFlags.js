@@ -1,6 +1,4 @@
 // Polyfills
-import defineProperty from 'core-js/library/fn/object/define-property';
-import freeze from 'core-js/library/fn/object/freeze';
 import includes from 'core-js/library/fn/array/virtual/includes';
 import iterator from 'core-js/library/fn/array/virtual/iterator';
 import values from 'core-js/library/fn/object/values';
@@ -49,7 +47,7 @@ class BitFlags {
 		for (const flag of constants::iterator()) {
 			flags[flag] = new EnumConstant(flag, bitValue);
 
-			Object::defineProperty(this, flag, {
+			Object.defineProperty(this, flag, {
 				enumerable: true,
 				get() {
 					return flags[flag];
@@ -60,18 +58,18 @@ class BitFlags {
 			length++;
 		}
 
-		Object::defineProperty(this, 'NONE', {
+		Object.defineProperty(this, 'NONE', {
 			value: new EnumConstant('NONE', 0),
 			enumerable: false
 		});
 
-		Object::defineProperty(this, 'length', {
+		Object.defineProperty(this, 'length', {
 			value: length,
 			writable: false,
 			enumerable: false
 		});
 
-		Object::freeze(this);
+		Object.freeze(this);
 	}
 
 	/**

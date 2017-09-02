@@ -16,9 +16,9 @@ describe('EnumConstant', () => {
 		}).to.throw(TypeError);
 
 		expect(() => {
-			constant.value++;
+			constant.ordinal++;
 
-			expect(constant.value).to.equal(value);
+			expect(constant.ordinal).to.equal(value);
 			throw new TypeError('Failed silently');
 		}).to.throw(TypeError);
 	});

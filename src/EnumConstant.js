@@ -1,6 +1,3 @@
-// Polyfills
-import freeze from 'core-js/library/fn/object/freeze';
-
 /**
  * @private
  * @class
@@ -34,7 +31,7 @@ class EnumConstant {
 		this.name = name;
 		this.ordinal = ordinal;
 
-		Object::freeze(this);
+		Object.freeze(this);
 	}
 
 	/**
