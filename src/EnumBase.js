@@ -136,17 +136,6 @@ class EnumBase {
 	}
 
 	/**
-	 * Checks whether a value/constant belongs to this Enum-like instance. This is equivalent to EnumBase#has.
-	 *
-	 * @public
-	 * @param {EnumConstant} value
-	 * @returns {Boolean}
-	 */
-	[Symbol.hasInstance](value) {
-		return this.has(value);
-	}
-
-	/**
 	 * Gets a string representation of this instance.
 	 *
 	 * @public

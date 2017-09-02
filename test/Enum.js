@@ -71,10 +71,6 @@ describe('Enum', () => {
 		}
 	});
 
-	it('should recognize its\' flags as instances', () => {
-		expect(flags[flagArray[0]] instanceof flags).to.equal(true);
-	});
-
 	describe('.fromArray()', () => {
 		it('should be possible to create an Enum from an array', () => {
 			const input = ['A', 'B', 'C'];

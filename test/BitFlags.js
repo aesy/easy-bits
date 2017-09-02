@@ -83,10 +83,6 @@ describe('BitFlags', () => {
 		}).to.throw(Error);
 	});
 
-	it('should recognize its\' flags as instances', () => {
-		expect(flags[flagArray[0]] instanceof flags).to.equal(true);
-	});
-
 	describe('.fromArray()', () => {
 		it('should be possible to create a BitFlag instance from an array', () => {
 			const input = ['A', 'B', 'C'];
