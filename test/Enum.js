@@ -19,18 +19,31 @@ describe('Enum', () => {
 	it('should not allow properties to be changed, removed or added', () => {
 		expect(() => {
 			flags.flags.newProp = true;
+
+			expect(flags.flags.newProp).to.equal(undefined);
+			throw new TypeError('Failed silently');
 		}).to.throw(TypeError);
 
 		expect(() => {
 			flags.newProp = true;
+
+			expect(flags.newProp).to.equal(undefined);
+			throw new TypeError('Failed silently');
 		}).to.throw(TypeError);
 
 		expect(() => {
+			const temp = flags[flagArray[0]];
 			flags[flagArray[0]]++;
+
+			expect(flags[flagArray[0]]).to.equal(temp);
+			throw new TypeError('Failed silently');
 		}).to.throw(TypeError);
 
 		expect(() => {
 			delete flags[flagArray[0]];
+
+			expect(flags[flagArray[0]]).to.not.equal(undefined);
+			throw new TypeError('Failed silently');
 		}).to.throw(TypeError);
 	});
 

@@ -1,11 +1,12 @@
 // Polyfills
-import iterator from 'core-js/library/fn/array/virtual/iterator';
-import freeze from 'core-js/library/fn/object/freeze';
 import defineProperty from 'core-js/library/fn/object/define-property';
+import freeze from 'core-js/library/fn/object/freeze';
+import includes from 'core-js/library/fn/array/virtual/includes';
+import iterator from 'core-js/library/fn/array/virtual/iterator';
+import values from 'core-js/library/fn/object/values';
 
 import BitArray from './BitArray';
 import BitField from './BitField';
-import EnumBase from './EnumBase';
 import EnumConstant from './EnumConstant';
 
 /**
@@ -16,8 +17,9 @@ import EnumConstant from './EnumConstant';
  *
  * @public
  * @class
+ * @implements {EnumLike}
  */
-class BitFlags extends EnumBase {
+class BitFlags {
 	/**
 	 * @public
 	 * @readonly
@@ -26,15 +28,23 @@ class BitFlags extends EnumBase {
 	NONE;
 
 	/**
+	 * The amount of values/constants in this instance, not including 'NONE'.
+	 *
+	 * @public
+	 * @readonly
+	 * @member {Number}
+	 */
+	length;
+
+	/**
 	 * @public
 	 * @constructor
 	 * @param {...String} [constants]
 	 */
 	constructor(...constants) {
-		super();
-
 		const flags = {};
 		let bitValue = 1;
+		let length = 0;
 
 		for (const flag of constants::iterator()) {
 			flags[flag] = new EnumConstant(flag, bitValue);
@@ -47,11 +57,17 @@ class BitFlags extends EnumBase {
 			});
 
 			bitValue <<= 1;
-			this.length++;
+			length++;
 		}
 
 		Object::defineProperty(this, 'NONE', {
 			value: new EnumConstant('NONE', 0),
+			enumerable: false
+		});
+
+		Object::defineProperty(this, 'length', {
+			value: length,
+			writable: false,
 			enumerable: false
 		});
 
@@ -68,6 +84,67 @@ class BitFlags extends EnumBase {
 	 */
 	static fromArray(array) {
 		return new this(...array);
+	}
+
+	/**
+	 * Deserializes a string and returns a new instance.
+	 *
+	 * @public
+	 * @static
+	 * @param {String} input
+	 * @throws {Error} In case input could not be parsed.
+	 * @returns {BitFlags} A new instance.
+	 */
+	static deserialize(input) {
+		if (typeof input !== 'string') {
+			throw new Error('Failed to deserialize input');
+		}
+
+		const values = input.split(',').map(value => value.trim());
+
+		if (values::includes('')) {
+			throw new Error('Failed to deserialize input - invalid enum <<empty>> found');
+		}
+
+		return new BitFlags(...values);
+	}
+
+	forEach(callback) {
+		this.values().forEach(value => {
+			callback(value, value.name, this);
+		});
+	}
+
+	values() {
+		return Object::values(this)
+			.sort((a, b) => a.ordinal - b.ordinal);
+	}
+
+	has(value) {
+		return this.values()::includes(value);
+	}
+
+	serialize() {
+		return this.values()
+			.map(constant => constant.name)
+			.toString();
+	}
+
+	[Symbol.iterator]() {
+		const arr = this.values();
+		let index = 0;
+
+		return {
+			next() {
+				const value = arr[index];
+				index++;
+
+				return {
+					value,
+					done: index > arr.length
+				};
+			}
+		};
 	}
 
 	/**

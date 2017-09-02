@@ -10,10 +10,16 @@ describe('EnumConstant', () => {
 	it('should not allow properties to be changed or added', () => {
 		expect(() => {
 			constant.newProp = true;
+
+			expect(constant.newProp).to.equal(undefined);
+			throw new TypeError('Failed silently');
 		}).to.throw(TypeError);
 
 		expect(() => {
 			constant.value++;
+
+			expect(constant.value).to.equal(value);
+			throw new TypeError('Failed silently');
 		}).to.throw(TypeError);
 	});
 
