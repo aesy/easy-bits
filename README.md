@@ -7,6 +7,8 @@
 [![xo code style](https://img.shields.io/badge/code%20style-%20XO-67d5c5.svg)](https://github.com/sindresorhus/xo)
 [![MIT license](https://img.shields.io/github/license/aesy/Easy-Bits.svg)](https://github.com/aesy/Easy-Bits/blob/master/LICENSE)
 
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/easypeasy.svg)](https://saucelabs.com/u/easypeasy)
+
 Enums, BitFlags, BitFields, BitMasks and BitArrays for JavaScript & TypeScript.
 
 ### [API Reference](https://aesy.github.io/Easy-Bits/)
@@ -66,12 +68,11 @@ switch (value) {
 }
 
 console.log(Day.MONDAY.equals(Day.FRIDAY));     // false
-console.log(Day.MONDAY instanceof Day);         // true
 console.log(Day.MONDAY === OtherEnum.CONSTANT); // false
 console.log(Day.MONDAY == OtherEnum.CONSTANT);  // true, if their ordinal values are the same
 ```
 
-Note that the examples above uses ECMAScript 6 features.
+Note that the examples above uses ECMAScript 2015 features.
 
 #### TypeScript
 ```ts
@@ -94,20 +95,20 @@ configuration.off(OtherEnum.CONSTANT); // ERROR: argument type OtherEnum is not 
 ```
 
 ## Installation
-From npm: run `npm install easy-bits --save`.
+From NPM: run `npm install easy-bits --save`.
 
 From source: download `easy-bits.min.js` in the `dist` folder.
 
 #### and then import
-ES6 style: `import { Enum } from 'easy-bits';`.
+ES2015 style: `import { Enum } from 'easy-bits';`.
 
 or link in HTML: `<script src="easy-bits.min.js"></script>`.
 
 ## Support
-This library uses polyfills that doesn't pollute the global namespace. It has not been thoroughly tested in various 
-environments. However, these are the environments that is targetted to work:
+Easy-Bits uses polyfills that doesn't pollute the global namespace. 
+The following environments are tested and supported: 
 
-`Chrome 26+` `Firefox 4+` `Safari 5+` `Opera 12+` `Internet Explorer 8+` `Edge` `NodeJS 1+`
+`Chrome 26+` `Firefox 4+` `Safari 6+` `Opera 12+` `Internet Explorer 8+` `Edge` `NodeJS 4+`
 
 ## Contribute
 Use the [issue tracker](https://github.com/aesy/Easy-Bits/issues) to report bugs or make feature requests. 
@@ -117,7 +118,6 @@ Check the list of issues below if you want to contribute but don't know where to
 
 ## Issues
 * No performance tests.
-* No thorough environment tests.
 * Duplicate unit tests.
 * Accessing nonexistant EnumConstant properties does not throw an error. This is possible to solve with 
 [Proxies](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
