@@ -1,3 +1,4 @@
+require('dotenv').config();
 const pkg = require('../package.json');
 
 const customLaunchers = Object.assign({},
@@ -50,25 +51,49 @@ function cartesianProduct() {
 }
 
 module.exports = (config) => {
+	if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
+		console.error('saucelabs username and/or access key missing');
+
+		process.exit(1);
+	}
+
+	require('./karma.config.local')(config);
+
+	config.reporters.concat(['saucelabs']);
+
 	config.set({
-		basePath: '../',
 		browsers: Object.keys(customLaunchers),
-		browserDisconnectTolerance: 1,
+		browserNoActivityTimeout: 30000,
 		concurrency: 2,
 		customLaunchers: customLaunchers,
-		files: ['test/**/*.js'],
-		frameworks: ['mocha', 'chai'],
-		preprocessors: {
-			'test/**/*.js': ['webpack', 'sourcemap']
-		},
-		reporters: ['mocha', 'saucelabs'],
 		sauceLabs: {
 			testName: pkg.name,
 			recordScreenshots: false,
-			build: `TRAVIS #${process.env.TRAVIS_BUILD_NUMBER} (${process.env.TRAVIS_BUILD_ID})`,
-			tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER
-		},
-		singleRun: true,
-		webpack: require('./webpack.config.development')
+			username: process.env.SAUCE_USERNAME,
+			accessKey: process.env.SAUCE_ACCESS_KEY
+		}
 	});
+
+	if (process.env.CI) {
+		Object.assign(config.sauceLabs, {
+			build: `travis #${process.env.TRAVIS_BUILD_NUMBER} (${process.env.TRAVIS_BUILD_ID})`,
+			tags: [
+				`${pkg.name}_${pkg.version}`,
+				`travis@${process.env.TRAVIS_JOB_NUMBER}`,
+				`${process.env.SAUCE_USERNAME}@${process.env.TRAVIS_BRANCH}`
+			],
+			tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER
+		});
+	} else { // Local
+		const date = Date.now();
+
+		Object.assign(config.sauceLabs, {
+			build: `local #? (${date})`,
+			tags: [
+				`${pkg.name}@${pkg.version}`,
+				`${process.env.SAUCE_USERNAME}@local`
+			],
+			tunnelIdentifier: date
+		});
+	}
 };

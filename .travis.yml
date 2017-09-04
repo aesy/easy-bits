@@ -16,13 +16,13 @@ jobs:
   include:
     - stage: test:coverage
       script:
-        - npm run test
+        - npm run test:node
         - npm run test:coverage:check
       after_success:
         - npm run test:coverage:report
     - stage: test:browser
       script:
-        - karma start ./config/karma.config.saucelabs.js
+        - npm run test:browser:saucelabs
 script:
   - npm run build:prod
-  - npm run test
+  - npm run test:node
