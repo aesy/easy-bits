@@ -59,7 +59,7 @@ module.exports = (config) => {
 
 	require('./karma.config.local')(config);
 
-	config.reporters.concat(['saucelabs']);
+	config.reporters.push('saucelabs');
 
 	config.set({
 		browsers: Object.keys(customLaunchers),
@@ -85,15 +85,12 @@ module.exports = (config) => {
 			tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER
 		});
 	} else { // Local
-		const date = Date.now();
-
 		Object.assign(config.sauceLabs, {
-			build: `local #? (${date})`,
 			tags: [
 				`${pkg.name}@${pkg.version}`,
 				`${process.env.SAUCE_USERNAME}@local`
 			],
-			tunnelIdentifier: date
+			tunnelIdentifier: Date.now()
 		});
 	}
 };
