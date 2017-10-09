@@ -21,7 +21,7 @@ jobs:
       after_success:
         - npm run test:coverage:report
     - stage: test:browser
-      script:
+      after_script:
         - npm run test:browser:saucelabs
 script:
   - npm run build:prod

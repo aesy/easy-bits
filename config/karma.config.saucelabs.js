@@ -2,14 +2,13 @@ require('dotenv').config();
 const pkg = require('../package.json');
 
 const customLaunchers = Object.assign({},
-	...saucelabs(['OS X 10.8'], ['safari'], [6]),
+	...saucelabs(['OS X 10.9'], ['safari'], [7]),
 	...saucelabs(['OS X 10.10'], ['safari'], [8]),
 	...saucelabs(['OS X 10.12'], ['safari'], [10]),
 	...saucelabs(['OS X 10.12'], ['firefox'], [4]),
 	...saucelabs(['OS X 10.12'], ['chrome'], [48]),
 	...saucelabs(['Linux'], ['firefox'], [28]),
 	...saucelabs(['Linux'], ['chrome'], [26]),
-	...saucelabs(['Linux'], ['opera'], [12]),
 	...saucelabs(['Windows 7'], ['firefox'], [54]),
 	...saucelabs(['Windows 7'], ['internet explorer'], [9, 10, 11]),
 	...saucelabs(['Windows 7'], ['chrome'], [38]),
