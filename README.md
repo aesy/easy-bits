@@ -94,7 +94,7 @@ enum FontStyle {
   MY_FAVORITE = BOLD | ITALICS
 }
 
-const configuration = new BitField<FontStyle>();
+const configuration: BitSet<FontStyle> = new BitField<FontStyle>();
 configuration.on(FontStyle.BOLD | FontStyle.UPPERCASE);
 configuration.off(Direction.NORTH); // ERROR: argument type Direction is not assignable to parameter type FontStyle
 ```
