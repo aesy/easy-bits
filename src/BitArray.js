@@ -92,6 +92,20 @@ class BitArray {
 		return this.value.filter(value => value).length;
 	}
 
+	intersect(...masks) {
+		const bitArray = BitArray.combineMasks(...masks);
+		const length = Math.max(bitArray.length, this.length);
+
+		for (let i = 0; i < length; i++) {
+			const thisBit = this.get(i);
+			const otherBit = bitArray.get(i);
+
+			this.setAt(thisBit && otherBit, i);
+		}
+
+		return this;
+	}
+
 	intersects(...masks) {
 		const bitArray = BitArray.combineMasks(...masks);
 		const length = Math.max(bitArray.length, this.length);

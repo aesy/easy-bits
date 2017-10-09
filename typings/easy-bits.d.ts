@@ -3,7 +3,8 @@ export type Bit = 0 | 1 | false | true;
 export interface BitSet<T extends number> {
 	readonly length: number;
 	count(): number;
-	intersects(bitset: T): boolean;
+	intersect(...masks: T[]): this;
+	intersects(...masks: T[]): boolean;
 	get(index: number): boolean;
 	getRange(from: number, to: number): this;
 	test(...masks: T[]): boolean;

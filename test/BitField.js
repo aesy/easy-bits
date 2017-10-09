@@ -92,6 +92,26 @@ describe('BitField', () => {
 		});
 	});
 
+	describe('#intersect()', () => {
+		it('should intersect this with a bitmask', () => {
+			const value = 0b0110001101;
+			const opposite = 0b1001110010;
+			const bitField = new BitField(10);
+
+			bitField.copy(value);
+			bitField.intersect(0);
+			expect(bitField.valueOf()).to.equal(0);
+
+			bitField.copy(value);
+			bitField.intersect(opposite);
+			expect(bitField.valueOf()).to.equal(0);
+
+			bitField.copy(value);
+			bitField.intersect(0b1010);
+			expect(bitField.valueOf()).to.equal(0b1000);
+		});
+	});
+
 	describe('#intersects()', () => {
 		it('should return a boolean indicating whether any bit from input BitField is also set to 1 by this', () => {
 			const bitField = new BitField(10).copy(0b0110001101);
@@ -144,7 +164,7 @@ describe('BitField', () => {
 	});
 
 	describe('#test()', () => {
-		it('should represent the and operation to test if ALL bits of a bitmask are set to 1', () => {
+		it('should test if ALL bits of a bitmask are set to 1', () => {
 			const bitField = new BitField(10).copy(0b0110001101);
 
 			expect(bitField.test(0)).to.equal(true);
@@ -156,7 +176,7 @@ describe('BitField', () => {
 	});
 
 	describe('#testAny()', () => {
-		it('should represent the and operation to test if ANY bits of a bitmask are set to 1', () => {
+		it('should test if ANY bits of a bitmask are set to 1', () => {
 			const bitField = new BitField(10).copy(0b0110001101);
 
 			expect(bitField.testAny(0)).to.equal(false);
@@ -168,7 +188,7 @@ describe('BitField', () => {
 	});
 
 	describe('#testAt()', () => {
-		it('should represent the and operation to test if a bit at a specific index is set to a specific value', () => {
+		it('should test if a bit at a specific index is set to a specific value', () => {
 			const bitField = new BitField(10).copy(0b0110001101);
 
 			bitField.toArray().reverse().forEach((bit, index) => {
@@ -190,7 +210,7 @@ describe('BitField', () => {
 	});
 
 	describe('#testAll()', () => {
-		it('should represent the and operation to test if ALL bits of BitField is set to a specific value', () => {
+		it('should test if ALL bits of BitField is set to a specific value', () => {
 			const bitField1 = new BitField(3);
 			const bitField2 = new BitField(3).on(0b11);
 			const bitField3 = new BitField().on(0b111);

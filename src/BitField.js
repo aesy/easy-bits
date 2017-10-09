@@ -134,6 +134,12 @@ class BitField {
 		return count;
 	}
 
+	intersect(...masks) {
+		this.value &= BitField.combineMasks(...masks);
+
+		return this;
+	}
+
 	intersects(...masks) {
 		const mask = BitField.combineMasks(...masks);
 

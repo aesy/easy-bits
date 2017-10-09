@@ -103,6 +103,26 @@ describe('BitArray', () => {
 		});
 	});
 
+	describe('#intersect()', () => {
+		it('should intersect this with a bitmask', () => {
+			const value = 0b0110001101;
+			const opposite = 0b1001110010;
+			const bitArray = new BitArray(10);
+
+			bitArray.copy(value);
+			bitArray.intersect(0);
+			expect(bitArray.valueOf()).to.equal(0);
+
+			bitArray.copy(value);
+			bitArray.intersect(opposite);
+			expect(bitArray.valueOf()).to.equal(0);
+
+			bitArray.copy(value);
+			bitArray.intersect(0b1010);
+			expect(bitArray.valueOf()).to.equal(0b1000);
+		});
+	});
+
 	describe('#intersects()', () => {
 		it('should return a boolean indicating whether any bit from input BitArray is also set to 1 by this', () => {
 			const bitArray = new BitArray(10).copy(0b0110001101);

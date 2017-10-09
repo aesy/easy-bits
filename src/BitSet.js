@@ -31,6 +31,16 @@
  */
 
 /**
+ * Intersects this bitset with one or more bitmasks, only affecting this instance.
+ * Equivalent to a bitwise AND operation.
+ *
+ * @function
+ * @name BitSet#intersect
+ * @param {...BitMask} masks
+ * @returns {this} This instance.
+ */
+
+/**
  * Checks whether this bitset intersects with one or more bitmasks. They intersect if any set bits in this bitset
  * are also set in any of the provided bitmasks.
  *
