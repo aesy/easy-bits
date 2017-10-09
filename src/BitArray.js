@@ -6,8 +6,8 @@ import fill from 'core-js/library/fn/array/virtual/fill';
 import { assertTrue, isInteger } from './util';
 
 /**
- * A {@link BitSet} implementation with no limit due to bits being stored in an array. This implementation will never
- * throw out of bounds errors.
+ * A {@link BitSet} implementation with no limit due to bits being stored in an array. Also known as bit set, bit map
+ * or bit vector. This implementation will never throw out of bounds errors.
  *
  * @public
  * @class
@@ -29,7 +29,8 @@ class BitArray {
 	 * @throws {Error} In case 'minLength' is equals to or smaller than zero.
 	 */
 	constructor(minLength) {
-		assertTrue(minLength === undefined || minLength > 0, 'Illegal argument: parameter \'minLength\' must be larger than 0');
+		assertTrue(minLength === undefined || minLength > 0,
+			'Illegal argument: parameter \'minLength\' must be larger than 0');
 
 		minLength = minLength || 1;
 
@@ -45,7 +46,7 @@ class BitArray {
 	 *
 	 * @private
 	 * @static
-	 * @param {...BitSetLike} masks The masks to combine.
+	 * @param {...BitMask} masks The masks to combine.
 	 * @returns {BitArray} The resulting mask.
 	 */
 	static combineMasks(...masks) {
@@ -91,10 +92,11 @@ class BitArray {
 		return this.value.filter(value => value).length;
 	}
 
-	intersects(bitset) {
-		const bitArray = BitArray.combineMasks(bitset);
+	intersects(...masks) {
+		const bitArray = BitArray.combineMasks(...masks);
+		const length = Math.max(bitArray.length, this.length);
 
-		for (let i = 0; i < bitArray.length; i++) {
+		for (let i = 0; i < length; i++) {
 			const thisBit = this.get(i);
 			const otherBit = bitArray.get(i);
 

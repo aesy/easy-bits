@@ -6,6 +6,7 @@ import { assertTrue, isInteger, withinRange } from './util';
 
 /**
  * A {@link BitSet} implementation limited to 31 bits due to bits being stored in a Number type.
+ * This implementation is about 25% faster than a BitArray.
  *
  * @public
  * @class
@@ -40,7 +41,8 @@ class BitField {
      * @throws {Error} In case 'minLength' is equals to or smaller than zero.
 	 */
 	constructor(minLength) {
-		assertTrue(minLength === undefined || minLength > 0, 'Illegal argument: parameter \'minLength\' must be larger than 0');
+		assertTrue(minLength === undefined || minLength > 0,
+			'Illegal argument: parameter \'minLength\' must be larger than 0');
 
 		this.minLength = minLength || 1;
 
@@ -70,7 +72,7 @@ class BitField {
 	 *
 	 * @private
 	 * @static
-	 * @param {...BitSetLike} masks The masks to combine.
+	 * @param {...BitMask} masks The masks to combine.
 	 * @returns {Number} The resulting mask.
 	 */
 	static combineMasks(...masks) {
@@ -132,8 +134,10 @@ class BitField {
 		return count;
 	}
 
-	intersects(bitset) {
-		return (this.value & BitField.valueOf(bitset)) !== 0;
+	intersects(...masks) {
+		const mask = BitField.combineMasks(...masks);
+
+		return (this.value & mask) !== 0;
 	}
 
 	get(index) {

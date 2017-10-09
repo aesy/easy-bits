@@ -26,14 +26,21 @@ configuration.test(options.OPTION3); // true
 configuration.testAny(options.OPTION1 | options.OPTION2); // true
 configuration.testAll(options.OPTION1 | options.OPTION2); // false
 
+configuration.count(); // 2
+configuration.flipAll();
+configuration.count(); // 1
+configuration.test(options.OPTION2); // true
+
+const clone = configuration.clone();
+
 // Serialize
 const string = configuration.serialize();
 // Deserialize
-const configuration2 = BitFlags.deserialize(string);
+const copy = BitFlags.deserialize(string);
 ```
 BitFields and BitArrays are interchangeable, their APIs are identical. 
-The only difference between them is how many flags they support (BitField is limited to 31 flags) and their performance. 
-This is due to how they internally store the data.
+The only difference between them is how many flags they support (BitField is limited to 31 flags) and their performance 
+(BitField is about 25% faster than BitArray). This is due to how they internally store the data.
 
 #### Enums:
 ```js
@@ -89,7 +96,7 @@ enum FontStyle {
 
 const configuration = new BitField<FontStyle>();
 configuration.on(FontStyle.BOLD | FontStyle.UPPERCASE);
-configuration.off(OtherEnum.CONSTANT); // ERROR: argument type OtherEnum is not assignable to parameter type FontStyle
+configuration.off(Direction.NORTH); // ERROR: argument type Direction is not assignable to parameter type FontStyle
 ```
 
 ## Installation
@@ -112,22 +119,22 @@ Easy-Bits uses polyfills that doesn't pollute the global namespace in order to s
 Use the [issue tracker](https://github.com/aesy/Easy-Bits/issues) to report bugs or make feature requests. 
 Pull requests are welcome, just make sure compiliation still works (`npm run build:prod`), 
 linting pass without errors (`npm run lint`) and all tests still pass (`npm run test:node`) beforehand. 
-Check the list of issues below if you want to contribute but don't know where to start!
+Check the list of issues and todos below if you want to contribute but don't know where to start!
 
 ## Issues
-* No performance tests.
-* Duplicate unit tests.
 * Accessing nonexistant EnumConstant properties does not throw an error. This is possible to solve with 
 [Proxies](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 but a polyfill for that would make lookups slow {{citation needed}}.
-* No auto-completion for Enum/BitFlag constants.
-* All configuration files should reside in the `config/` folder.
 * EnumConstants should interpolate as a string. For example, this fails:
 ```js
 const constant = new EnumConstant('name', 42);
 expect('' + constant + '').to.equal(constant.toString()); // Expected: 'EnumConstant(name:42)', Actual: '42'
 expect(`${constant}`).to.equal(constant.toString());      // Expected: 'EnumConstant(name:42)', Actual: '42'
 ```
+
+## Todo
+* All configuration files should reside in the `config/` folder.
+* Get rid of duplicate unit tests.
 
 ## License
 MIT, see [LICENSE](/LICENSE) file.

@@ -3,18 +3,27 @@
  */
 
 /**
- * A BitSet holds a sequence of bits and contains convenient methods for common bit operations.
+ * A data type to be used for bitwise operations.
+ *
+ * @typedef {BitSetLike} BitMask
+ */
+
+/**
+ * A data structure that holds a sequence of bits and contains convenient methods for common bitwise operations.
  *
  * @interface BitSet
  */
 
 /**
+ * The index of the highest set bit plus one or the minimum set length, whichever is higher.
+ *
  * @member {Number}
  * @name BitSet#length
  */
 
 /**
- * Gets the current amount of '1's.
+ * Gets the number of set bits (1's) in this bitset.
+ * For the total number of bits, see BitSet#length.
  *
  * @function
  * @name BitSet#count
@@ -22,11 +31,12 @@
  */
 
 /**
- * Checks whether this instance intersects with another bitsetlike value or instance.
+ * Checks whether this bitset intersects with one or more bitmasks. They intersect if any set bits in this bitset
+ * are also set in any of the provided bitmasks.
  *
  * @function
  * @name BitSet#intersects
- * @param {BitSetLike} bitset The bitset to compare with.
+ * @param {...BitMask} masks
  * @returns {Boolean}
  */
 
@@ -52,20 +62,22 @@
  */
 
 /**
- * Tests whether one or more bits are on.
+ * Tests whether all bits are set based on one or more bitmasks.
+ * Only set bits in any of the provided bitmasks are tested.
  *
  * @function
  * @name BitSet#test
- * @param {...BitSetLike} masks
+ * @param {...BitMask} masks
  * @returns {Boolean}
  */
 
 /**
- * Tests whether any of one or more bits are on.
+ * Tests whether any bits are set based on one or more bitmasks.
+ * Only set bits in any of the provided bitmasks are tested.
  *
  * @function
  * @name BitSet#testAny
- * @param {...BitSetLike} masks
+ * @param {...BitMask} masks
  * @returns {Boolean}
  */
 
@@ -81,7 +93,7 @@
  */
 
 /**
- * Tests whether all bits in this instance has a specific value.
+ * Tests whether all bits in this bitset has one specific value.
  *
  * @function
  * @name BitSet#testAll
@@ -90,35 +102,38 @@
  */
 
 /**
- * Sets bits to 1 based on one or more masks.
+ * Sets bits to 1 based on one or more masks. Equivalent to a bitwise OR operation.
+ * Only set bits in any of the provided bitmasks are affected.
  *
  * @function
  * @name BitSet#on
- * @param {...BitSetLike} masks
+ * @param {...BitMask} masks
  * @returns {this} This instance.
  */
 
 /**
- * Sets bits to 0 based on one or more masks.
+ * Sets bits to 0 based on one or more masks. Equivalent to a bitwise AND NOT operation.
+ * Only set bits in any of the provided bitmasks are affected.
  *
  * @function
  * @name BitSet#off
- * @param {...BitSetLike} masks
+ * @param {...BitMask} masks
  * @returns {this} This instance.
  */
 
 /**
  * Sets bits to a specific value based on one or more masks.
+ * Only set bits in any of the provided bitmasks are affected.
  *
  * @function
  * @name BitSet#set
  * @param {Bit} value
- * @param {...BitSetLike} masks
+ * @param {...BitMask} masks
  * @returns {this} This instance.
  */
 
 /**
- * Sets all bits to a specific value.
+ * Sets all bits in this bitset to a specific value.
  *
  * @function
  * @name BitSet#setAll
@@ -127,7 +142,7 @@
  */
 
 /**
- * Sets one bit at a specific index to a specific value.
+ * Sets a bit at a specific index to a specific value.
  *
  * @function
  * @name BitSet#setAt
@@ -149,16 +164,17 @@
  */
 
 /**
- * Flips bits based on one or more masks.
+ * Flips bits based on one or more masks. Equivalent to a bitwise XOR operation.
+ * Only set bits in any of the provided bitmasks are affected.
  *
  * @function
  * @name BitSet#flip
- * @param {...BitSetLike} masks
+ * @param {...BitMask} masks
  * @returns {this} This instance.
  */
 
 /**
- * Flips all bits.
+ * Flips all bits in this bitset.
  *
  * @function
  * @name BitSet#flipAll
@@ -166,7 +182,7 @@
  */
 
 /**
- * Flips bits at a specific index.
+ * Flips a bit at a specific index.
  *
  * @function
  * @name BitSet#flipAt
@@ -186,7 +202,7 @@
  */
 
 /**
- * Copies a bitsetlike value or instance. Minimum length will be preserved.
+ * Copies a bitsetlike value or instance. Minimum length is preserved.
  *
  * @function
  * @name BitSet#copy
@@ -195,7 +211,7 @@
  */
 
 /**
- * Gets the integer value of this instance.
+ * Gets the integer value of this bitset.
  *
  * @function
  * @name BitSet#valueOf
@@ -203,7 +219,7 @@
  */
 
 /**
- * Serializes this instance.
+ * Serializes this bitset.
  *
  * @function
  * @name BitSet#serialize
@@ -211,16 +227,17 @@
  */
 
 /**
- * Checks whether this instance is equal to another bitsetlike value or instance.
+ * Checks whether this bitset is equal to another bitsetlike value or instance. They are equal if
+ * if their set bits match up.
  *
  * @function
  * @name BitSet#equals
- * @param {BitSetLike} other
+ * @param {BitMask} other
  * @returns {Boolean}
  */
 
 /**
- * Gets an array containing all the bits in this instance.
+ * Gets an array containing all the bits in this bitset.
  *
  * @function
  * @name BitSet#toArray
@@ -228,7 +245,7 @@
  */
 
 /**
- * Gets a string representation of this instance.
+ * Gets a string representation of this bitset.
  *
  * @function
  * @name BitSet#toString
