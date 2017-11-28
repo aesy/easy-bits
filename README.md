@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/easy-bits.svg)](https://www.npmjs.com/package/easy-bits)
 [![Travis](https://img.shields.io/travis/aesy/Easy-Bits.svg)](https://travis-ci.org/aesy/Easy-Bits)
-[![Code Climate](https://img.shields.io/codeclimate/github/aesy/Easy-Bits.svg)](https://codeclimate.com/github/aesy/Easy-Bits)
+[![Code Climate](https://api.codeclimate.com/v1/badges/4754900d7ff6acaf3186/maintainability)](https://codeclimate.com/github/aesy/Easy-Bits)
 [![Coverage Status](https://coveralls.io/repos/github/aesy/Easy-Bits/badge.svg?branch=master)](https://coveralls.io/github/aesy/Easy-Bits?branch=master)
 [![xo code style](https://img.shields.io/badge/code%20style-%20XO-67d5c5.svg)](https://github.com/sindresorhus/xo)
 [![MIT license](https://img.shields.io/github/license/aesy/Easy-Bits.svg)](https://github.com/aesy/Easy-Bits/blob/master/LICENSE)
