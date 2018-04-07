@@ -3,7 +3,15 @@ require('dotenv').config();
 module.exports = (config) => {
 	config.set({
 		basePath: '../',
-		browsers: ['PhantomJS'],
+		browsers: ['ChromeHeadless', 'FirefoxHeadless'],
+		customLaunchers: {
+			'FirefoxHeadless': {
+				base: 'Firefox',
+				flags: [
+					'-headless'
+				]
+			}
+		},
 		files: ['test/**/*.js'],
 		frameworks: ['mocha', 'chai'],
 		preprocessors: {
@@ -11,6 +19,6 @@ module.exports = (config) => {
 		},
 		reporters: ['mocha'],
 		singleRun: true,
-		webpack: require('./webpack.config.development')
+		webpack: require('./webpack.config.production')
 	});
 };

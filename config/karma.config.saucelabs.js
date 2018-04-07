@@ -4,16 +4,16 @@ const pkg = require('../package.json');
 const customLaunchers = Object.assign({},
 	...saucelabs(['OS X 10.9'], ['safari'], [7]),
 	...saucelabs(['OS X 10.10'], ['safari'], [8]),
-	...saucelabs(['OS X 10.12'], ['safari'], [10]),
+	...saucelabs(['OS X 10.12'], ['safari'], [11]),
 	...saucelabs(['OS X 10.12'], ['firefox'], [4]),
 	...saucelabs(['OS X 10.12'], ['chrome'], [48]),
 	...saucelabs(['Linux'], ['firefox'], [28]),
 	...saucelabs(['Linux'], ['chrome'], [26]),
-	...saucelabs(['Windows 7'], ['firefox'], [54]),
+	...saucelabs(['Windows 7'], ['firefox'], [59]),
 	...saucelabs(['Windows 7'], ['internet explorer'], [9, 10, 11]),
 	...saucelabs(['Windows 7'], ['chrome'], [38]),
-	...saucelabs(['Windows 10'], ['microsoftedge'], [13, 15]),
-	...saucelabs(['Windows 10'], ['chrome'], [60]),
+	...saucelabs(['Windows 10'], ['microsoftedge'], [13, 16]),
+	...saucelabs(['Windows 10'], ['chrome'], [65]),
 	...saucelabs(['Windows 10'], ['firefox'], [45])
 );
 
@@ -69,7 +69,11 @@ module.exports = (config) => {
 			testName: pkg.name,
 			recordScreenshots: false,
 			username: process.env.SAUCE_USERNAME,
-			accessKey: process.env.SAUCE_ACCESS_KEY
+			accessKey: process.env.SAUCE_ACCESS_KEY,
+			connectOptions: {
+				// https://support.saucelabs.com/hc/en-us/articles/115010079868-Issues-with-Safari-and-Karma-Test-Runner
+				noSslBumpDomains: "all"
+			}
 		}
 	});
 
