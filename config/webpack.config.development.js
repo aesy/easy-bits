@@ -1,10 +1,11 @@
 const config = require('./webpack.config.base.js');
 const merge = require('webpack-merge');
 
-module.exports = merge.smart({
+module.exports = merge.smart(config, {
+	mode: 'development',
 	output: {
 		devtoolModuleFilenameTemplate: '[absolute-resource-path]',
 		devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
 	},
 	devtool: 'inline-source-map'
-}, config);
+});

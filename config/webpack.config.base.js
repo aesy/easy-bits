@@ -6,6 +6,7 @@ module.exports = {
 	entry: {
 		'easy-bits.min': './src/index.js'
 	},
+	target: 'web',
 	output: {
 		path: path.resolve(__dirname, '../dist/'),
 		publicPath: '/',
@@ -22,8 +23,8 @@ module.exports = {
 			use: [{
 				loader: 'babel-loader',
 				options: {
-					'presets': ['es2015'],
-					'plugins': [
+					presets: ['es2015'],
+					plugins: [
 						'transform-class-properties',
 						'transform-function-bind'
 					]
@@ -36,5 +37,8 @@ module.exports = {
 		new webpack.ProvidePlugin({
 			Symbol: 'core-js/library/es6/symbol'
 		})
-	]
+	],
+	performance: {
+		hints: false
+	}
 };

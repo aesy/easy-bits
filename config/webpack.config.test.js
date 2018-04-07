@@ -2,12 +2,19 @@ const path = require('path');
 const config = require('./webpack.config.development.js');
 const merge = require('webpack-merge');
 
-module.exports = merge.smart({
+module.exports = merge.smart(config, {
+	target: 'node',
 	module: {
 		rules: [{
-			test: /\.(js)/,
+			test: /\.(js)$/,
 			include: path.resolve('src'),
-			loader: 'istanbul-instrumenter-loader'
+			enforce: 'post',
+			use: [{
+				loader: 'istanbul-instrumenter-loader',
+				options: {
+					esModules: true
+				}
+			}]
 		}]
 	}
-}, config);
+});

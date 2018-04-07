@@ -1,24 +1,20 @@
-const webpack = require('webpack');
 const config = require('./webpack.config.base.js');
 const merge = require('webpack-merge');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-module.exports = merge.smart({
-	plugins: [
-		new webpack.optimize.UglifyJsPlugin({
-			include: /\.min\.js$/,
-			compress: {
-				warnings: false,
-				drop_console: true
-			},
-			comments: false,
-			sourceMap: false,
-			mangle: {
-				except: [
-					'Array', 'BigInteger', 'Boolean', 'Buffer',
-					'webpackJsonp', 'exports', 'require'
-				]
-			},
-			minimize: true
-		})
-	]
-}, config);
+module.exports = merge.smart(config, {
+	mode: 'production',
+	optimization: {
+		minimizer: [
+			new UglifyJsPlugin({
+				include: /\.min\.js$/,
+				sourceMap: false,
+				uglifyOptions: {
+					compress: {
+						drop_console: true
+					}
+				}
+			})
+		]
+	}
+});
