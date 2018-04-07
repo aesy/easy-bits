@@ -111,7 +111,7 @@ or link in HTML: `<script src="easy-bits.min.js"></script>`.
 
 ## Support
 Easy-Bits uses polyfills that doesn't pollute the global namespace in order to support the following environments
-(including `NodeJS 4+`): 
+(including `NodeJS 6+`): 
 
 [![Cross Browser Build Status](https://saucelabs.com/browser-matrix/easy-bits.svg)](https://saucelabs.com/u/easy-bits)
 
