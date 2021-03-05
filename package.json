@@ -35,7 +35,7 @@
 		"lint": "eslint src --config ./config/.eslintrc.json",
 		"lint:fix": "npm run lint -- --fix",
 		"test:node": "nyc --include src mocha-webpack --webpack-config ./config/webpack.config.test.js --recursive test",
-		"test:browser:local": "karma start ./config/karma.config.local.js",
+		"test:browser": "karma start ./config/karma.config.js",
 		"test:clean": "rimraf ./coverage ./.nyc_output",
 		"test:coverage:check": "nyc report && nyc check-coverage --lines=80 --functions=80 --branches=80",
 		"test:coverage:report": "nyc report --reporter=text-lcov | coveralls",
