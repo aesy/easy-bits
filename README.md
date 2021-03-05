@@ -1,11 +1,29 @@
 # Easy Bits
 
-[![npm](https://img.shields.io/npm/v/easy-bits.svg)](https://www.npmjs.com/package/easy-bits)
-[![Travis](https://img.shields.io/travis/aesy/Easy-Bits.svg)](https://travis-ci.org/aesy/Easy-Bits)
-[![Code Climate](https://api.codeclimate.com/v1/badges/4754900d7ff6acaf3186/maintainability)](https://codeclimate.com/github/aesy/Easy-Bits)
-[![Coverage Status](https://coveralls.io/repos/github/aesy/Easy-Bits/badge.svg?branch=master)](https://coveralls.io/github/aesy/Easy-Bits?branch=master)
-[![xo code style](https://img.shields.io/badge/code%20style-%20XO-67d5c5.svg)](https://github.com/sindresorhus/xo)
-[![MIT license](https://img.shields.io/github/license/aesy/Easy-Bits.svg)](https://github.com/aesy/Easy-Bits/blob/master/LICENSE)
+[![npm][npm-image]][npm-url]
+[![Build Status][github-actions-image]][github-actions-url]
+[![Quality Status][code-climate-image]][code-climate-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
+[![Code Style][code-style-image]][code-style-url]
+[![License][license-image]][license-url]
+
+[npm-image]: https://img.shields.io/npm/v/easy-bits?style=flat-square 
+[npm-url]: https://www.npmjs.com/package/easy-bits
+
+[github-actions-image]: https://img.shields.io/github/workflow/status/aesy/Easy-Bits/Continous%20Integration?style=flat-square
+[github-actions-url]: https://github.com/aesy/Easy-Bits/actions
+
+[code-climate-image]: https://img.shields.io/codeclimate/maintainability-percentage/aesy/Easy-Bits?style=flat-square
+[code-climate-url]: https://codeclimate.com/github/aesy/Easy-Bits
+
+[coveralls-image]: https://img.shields.io/coveralls/github/aesy/Easy-Bits?style=flat-square
+[coveralls-url]: https://coveralls.io/github/aesy/Easy-Bits?branch=master
+
+[code-style-image]: https://img.shields.io/badge/code%20style-%20XO-67d5c5?style=flat-square
+[code-style-url]: https://github.com/sindresorhus/xo 
+
+[license-image]: https://img.shields.io/github/license/aesy/Easy-Bits?style=flat-square
+[license-url]: https://github.com/aesy/Easy-Bits/blob/master/LICENSE
 
 Enums, BitFlags, BitFields, BitMasks and BitArrays for JavaScript & TypeScript.
 
