@@ -1,3 +1,5 @@
+<img align="left" width="80" height="80" src="./img/icon.svg">
+
 # Easy Bits
 
 [![npm][npm-image]][npm-url]
