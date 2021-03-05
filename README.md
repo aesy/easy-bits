@@ -132,7 +132,7 @@ Easy-Bits uses polyfills that doesn't pollute the global namespace in order to s
 
 | Environment       | Supported Version   |
 | ----------------- | -------------------:|
-| Node              |            6 and up |
+| Node              |            8 and up |
 | Chrome            |           26 and up |
 | Firefox           |            4 and up |
 | Edge              |           13 and up |

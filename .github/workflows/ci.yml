@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 6, 10, 14 ]
+        node-version: [ 10, 12, 14 ]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
-      run: npm install
+      run: npm ci
     - name: Build with Node
       run: npm run build:prod
   test:
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 6, 10, 14 ]
+        node-version: [ 10, 12, 14 ]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -38,7 +38,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
-      run: npm install
+      run: npm ci
     - name: Lint with ESLint
       run: npm run lint
     - name: Test with Node
