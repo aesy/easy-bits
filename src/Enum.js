@@ -1,8 +1,3 @@
-// Polyfills
-import includes from 'core-js/library/fn/array/virtual/includes';
-import iterator from 'core-js/library/fn/array/virtual/iterator';
-import values from 'core-js/library/fn/object/values';
-
 import EnumConstant from './EnumConstant';
 
 /**
@@ -32,7 +27,7 @@ class Enum {
 		let bitValue = 1;
 		let length = 0;
 
-		for (const flag of constants::iterator()) {
+		for (const flag of constants) {
 			flags[flag] = new EnumConstant(flag, bitValue);
 
 			Object.defineProperty(this, flag, {
@@ -83,7 +78,7 @@ class Enum {
 
 		const values = input.split(',').map(value => value.trim());
 
-		if (values::includes('')) {
+		if (values.includes('')) {
 			throw new Error('Failed to deserialize input - invalid enum <<empty>> found');
 		}
 
@@ -97,12 +92,12 @@ class Enum {
 	}
 
 	values() {
-		return Object::values(this)
+		return Object.values(this)
 			.sort((a, b) => a.ordinal - b.ordinal);
 	}
 
 	has(value) {
-		return this.values()::includes(value);
+		return this.values().includes(value);
 	}
 
 	serialize() {

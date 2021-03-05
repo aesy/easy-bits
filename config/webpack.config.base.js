@@ -23,20 +23,27 @@ module.exports = {
 			use: [{
 				loader: 'babel-loader',
 				options: {
-					presets: ['es2015'],
+					presets: [['@babel/preset-env', {
+						useBuiltIns: 'usage',
+						corejs: 3,
+						targets: {
+							node: '8',
+							chrome: '26',
+							firefox: '4',
+							edge: '13',
+							ie: '10',
+							safari: '7'
+						}
+					}]],
 					plugins: [
-						'transform-class-properties',
-						'transform-function-bind'
+						'@babel/plugin-proposal-class-properties'
 					]
 				}
 			}]
 		}]
 	},
 	plugins: [
-		new webpack.NoEmitOnErrorsPlugin(),
-		new webpack.ProvidePlugin({
-			Symbol: 'core-js/library/es6/symbol'
-		})
+		new webpack.NoEmitOnErrorsPlugin()
 	],
 	performance: {
 		hints: false

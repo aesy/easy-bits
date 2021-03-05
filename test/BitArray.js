@@ -1,6 +1,3 @@
-// Polyfills
-import fill from 'core-js/library/fn/array/virtual/fill';
-
 const { describe, it } = global;
 import { expect } from 'chai';
 
@@ -14,7 +11,7 @@ describe('BitArray', () => {
 
 		const bitArray = new BitArray(32).flipAll();
 
-		expect(bitArray.toArray()).to.deep.equal(new Array(32)::fill(true));
+		expect(bitArray.toArray()).to.deep.equal(new Array(32).fill(true));
 
 		expect(() => {
 			bitArray.valueOf();

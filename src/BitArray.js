@@ -1,8 +1,3 @@
-// Polyfills
-import some from 'core-js/library/fn/array/virtual/some';
-import every from 'core-js/library/fn/array/virtual/every';
-import fill from 'core-js/library/fn/array/virtual/fill';
-
 import { assertTrue, isInteger } from './util';
 
 /**
@@ -185,7 +180,7 @@ class BitArray {
 	testAll(value) {
 		value = Boolean(value);
 
-		return this.value::every(element => element === value);
+		return this.value.every(element => element === value);
 	}
 
 	on(...masks) {
@@ -211,7 +206,7 @@ class BitArray {
 	}
 
 	setAll(value) {
-		this.value::fill(Boolean(value));
+		this.value.fill(Boolean(value));
 
 		return this;
 	}
@@ -287,7 +282,7 @@ class BitArray {
 	}
 
 	copy(bitset) {
-		this.value::fill(false);
+		this.value.fill(false);
 
 		if (bitset instanceof Object) {
 			const array = bitset.toArray().reverse();
@@ -344,7 +339,7 @@ class BitArray {
 	static deserialize(input) {
 		const array = input.split('');
 
-		if (array::some(isNaN)) {
+		if (array.some(isNaN)) {
 			throw new Error('Failed to deserialize input');
 		}
 

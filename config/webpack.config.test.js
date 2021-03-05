@@ -1,8 +1,8 @@
 const path = require('path');
 const config = require('./webpack.config.development.js');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 
-module.exports = merge.smart(config, {
+module.exports = merge(config, {
 	target: 'node',
 	module: {
 		rules: [{

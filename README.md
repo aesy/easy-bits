@@ -130,16 +130,15 @@ ES2015 style: `import { Enum } from 'easy-bits';`.
 or link in HTML: `<script src="easy-bits.min.js"></script>`.
 
 ## Support
-Easy-Bits uses polyfills that doesn't pollute the global namespace in order to support the following environments:
 
-| Environment       | Supported Version   |
-| ----------------- | -------------------:|
-| Node              |            8 and up |
-| Chrome            |           26 and up |
-| Firefox           |            4 and up |
-| Edge              |           13 and up |
-| Internet Explorer |           10 and up |
-| Safari            |            7 and up |
+| Environment       | Supported Version |
+| ----------------- | -----------------:|
+| Node              |          8 and up |
+| Chrome            |         26 and up |
+| Firefox           |          4 and up |
+| Edge              |         13 and up |
+| Internet Explorer |         10 and up |
+| Safari            |          7 and up |
 
 ## Contribute
 Use the [issue tracker](https://github.com/aesy/Easy-Bits/issues) to report bugs or make feature requests. 

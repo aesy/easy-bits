@@ -1,7 +1,3 @@
-// Polyfills
-import fill from 'core-js/library/fn/array/virtual/fill';
-import repeat from 'core-js/library/fn/string/virtual/repeat';
-
 import { assertTrue, isInteger, withinRange } from './util';
 
 /**
@@ -108,7 +104,7 @@ class BitField {
 	}
 
 	get length() {
-		let value = this.value;
+		let { value } = this;
 		let length = 0;
 
 		while (value > 0) {
@@ -120,7 +116,7 @@ class BitField {
 	}
 
 	count() {
-		let value = this.value;
+		let { value } = this;
 		let count = 0;
 
 		while (value > 0) {
@@ -299,7 +295,7 @@ class BitField {
 		let output = this.value.toString(2);
 
 		if (this.minLength > output.length) {
-			output = '0'::repeat(this.minLength - output.length) + output;
+			output = '0'.repeat(this.minLength - output.length) + output;
 		}
 
 		return output;
@@ -340,7 +336,7 @@ class BitField {
 
 	toArray() {
 		const array = [];
-		let value = this.value;
+		let { value } = this;
 		let length = 0;
 
 		while (value > 0) {
@@ -350,7 +346,7 @@ class BitField {
 		}
 
 		if (this.minLength > length) {
-			const filler = new Array(this.minLength - length)::fill(false);
+			const filler = new Array(this.minLength - length).fill(false);
 
 			array.push(...filler);
 		}

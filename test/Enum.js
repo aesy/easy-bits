@@ -1,6 +1,3 @@
-// Polyfills
-import 'core-js/fn/array/iterator';
-
 const { describe, it } = global;
 import { expect } from 'chai';
 import Enum from '../src/Enum';
