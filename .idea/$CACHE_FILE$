@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$USER_HOME$/Development/DropwizardTemplate" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Forks/ExPetrum" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Forks/KotlinForge" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Forks/MinecraftByExample" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Forks/dd-trace-java" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Forks/dropwizardDI" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Forks/intellij-dlanguage" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Forks/msgpack-java" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Game" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Game/Buildwars2" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Game/Buildwars2/Game" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Game/Game" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Sort/EggEngine" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/Web/dropwizardDI" value="PREVIEW" />
+        <entry key="$USER_HOME$/Development/dropwizardDI" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AOP</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="YarnPnpManager">
+    <pnp-files />
+  </component>
+</project>

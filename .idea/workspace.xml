@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0cece3a3-dc4a-45f2-bd7b-72abe2589d63" name="Default Changelist" comment="Add browser tests to CI pipeline">
+      <change beforePath="$PROJECT_DIR$/config/webpack.config.base.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack.config.base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/webpack.config.development.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack.config.development.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/webpack.config.production.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack.config.production.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/webpack.config.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack.config.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/easy-bits.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/easy-bits.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BitArray.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BitArray.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BitField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BitField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BitFlags.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/BitFlags.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Enum.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enum.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/BitArray.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/BitArray.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/BitFlags.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/BitFlags.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Enum.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/Enum.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitRewordedCommitMessages">
+    <option name="onto" value="9315fccef3daf10029e5238ca38254b5d0332b59" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="2" />
+  </component>
+  <component name="GoVcsConfiguration">
+    <option name="GO_FMT" value="false" />
+  </component>
+  <component name="JupyterTrust" id="c86b2e07-506e-43ee-84b3-23207fcac098" />
+  <component name="KotlinMultiplatform">
+    <executables />
+  </component>
+  <component name="ProjectId" id="1fwcplPldKu3i4MlumkXJADqS3r" />
+  <component name="ProjectViewState">
+    <option name="abbreviatePackageNames" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="TF_FMT" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test:node" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test:node" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Migrate Travis CI test pipeline to GitHub Actions" />
+    <MESSAGE value="Drop SauceLabs tests as it's no longer free for open source" />
+    <MESSAGE value="Drop support for Node 6 &amp; 7" />
+    <MESSAGE value="Add readme icon" />
+    <MESSAGE value="Add browser tests to CI pipeline" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add browser tests to CI pipeline" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="594" y="236" key="#Inspections" timestamp="1615055361070">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="594" y="236" key="#Inspections/0.0.1920.1080@0.0.1920.1080" timestamp="1615055361070" />
+    <state x="460" y="241" key="Git.Interactive.Rebase.Dialog" timestamp="1615047890751">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="460" y="241" key="Git.Interactive.Rebase.Dialog/0.0.1920.1080@0.0.1920.1080" timestamp="1615047890751" />
+    <state width="1621" height="402" key="GridCell.Tab.0.bottom" timestamp="1615055786117">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1621" height="402" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1615055786117" />
+    <state width="1621" height="402" key="GridCell.Tab.0.center" timestamp="1615055786117">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1621" height="402" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1615055786117" />
+    <state width="1621" height="402" key="GridCell.Tab.0.left" timestamp="1615055786117">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1621" height="402" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1615055786117" />
+    <state width="1621" height="402" key="GridCell.Tab.0.right" timestamp="1615055786117">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1621" height="402" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1615055786117" />
+    <state x="330" y="251" key="RollbackChangesDialog" timestamp="1615041423942">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="330" y="251" key="RollbackChangesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1615041423942" />
+    <state x="461" y="190" key="SettingsEditor" timestamp="1615047880567">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="461" y="190" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1615047880567" />
+    <state x="560" y="277" key="Vcs.Push.Dialog.v2" timestamp="1615048934515">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="560" y="277" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1615048934515" />
+    <state x="385" y="102" width="1143" height="869" key="find.popup" timestamp="1615056111951">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="385" y="102" width="1143" height="869" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1615056111951" />
+    <state width="538" height="263" key="javadoc.popup.new" timestamp="1615056062020">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="538" height="263" key="javadoc.popup.new/0.0.1920.1080@0.0.1920.1080" timestamp="1615056062020" />
+    <state x="189" y="265" width="672" height="678" key="search.everywhere.popup" timestamp="1615055971363">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="189" y="265" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1615055971363" />
+  </component>
+  <component name="YamllintSettings">
+    <option name="binPath" value="/usr/bin/yamllint" />
+  </component>
+</project>
