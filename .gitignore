@@ -1,4 +1,4 @@
-.env
+..env
 .tmp
 .DS_STORE
 *.log
@@ -7,3 +7,4 @@ node_modules
 .nyc_output
 *.iml
 coverage
+docs
