@@ -122,7 +122,7 @@ configuration.off(Direction.NORTH); // ERROR: argument type Direction is not ass
 ## Installation
 From NPM: run `npm install easy-bits --save`.
 
-From source: download `easy-bits.min.js` in the `dist` folder.
+From GitHub: download [easy-bits.min.js](https://github.com/aesy/Easy-Bits/releases).
 
 #### and then import
 ES2015 style: `import { Enum } from 'easy-bits';`.
@@ -141,25 +141,8 @@ or link in HTML: `<script src="easy-bits.min.js"></script>`.
 | Safari            |          7 and up |
 
 ## Contribute
-Use the [issue tracker](https://github.com/aesy/Easy-Bits/issues) to report bugs or make feature requests. 
-Pull requests are welcome, just make sure compiliation still works (`npm run build:prod`), 
-linting pass without errors (`npm run lint`) and all tests still pass (`npm run test:node`) beforehand. 
-Check the list of issues and todos below if you want to contribute but don't know where to start!
-
-## Issues
-* Accessing nonexistant EnumConstant properties does not throw an error. This is possible to solve with 
-[Proxies](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
-but a polyfill for that would make lookups slow {{citation needed}}.
-* EnumConstants should interpolate as a string. For example, this fails:
-```js
-const constant = new EnumConstant('name', 42);
-expect('' + constant + '').to.equal(constant.toString()); // Expected: 'EnumConstant(name:42)', Actual: '42'
-expect(`${constant}`).to.equal(constant.toString());      // Expected: 'EnumConstant(name:42)', Actual: '42'
-```
-
-## Todo
-* All configuration files should reside in the `config/` folder.
-* Get rid of duplicate unit tests.
+Use the [issue tracker](https://github.com/aesy/Easy-Bits/issues) to report bugs or make feature requests. Pull requests are welcome, but it may be a good idea to create an issue to discuss any 
+changes beforehand.
 
 ## License
 MIT, see [LICENSE](/LICENSE) file.
