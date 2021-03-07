@@ -57,7 +57,6 @@ describe('Enum', () => {
 		let j = 0;
 		for (const flag of flags) {
 			expect(flag).to.be.an.instanceof(EnumConstant);
-			expect(Number(flag)).to.not.equal(0);
 			j++;
 		}
 
@@ -118,7 +117,7 @@ describe('Enum', () => {
 	});
 
 	describe('#forEach()', () => {
-		it('should iterate every value-key pair but where value is 0', () => {
+		it('should iterate every value-key pair', () => {
 			let i = 0;
 
 			flags.forEach((value, key, obj) => {
@@ -127,7 +126,6 @@ describe('Enum', () => {
 				expect(value).to.satisfy((val) => {
 					return (typeof val === 'number') || (val instanceof EnumConstant);
 				});
-				expect(Number(value)).to.not.equal(0);
 				i++;
 			});
 

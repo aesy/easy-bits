@@ -104,8 +104,8 @@ describe('BitFlags', () => {
 			expect(flags.values().map(constant => constant.name)).to.deep.equal(input);
 
 			let bit = 1;
-			for (const value of flags) {
-				expect(Number(value)).to.equal(bit);
+			for (const flag of flags) {
+				expect(Number(flag)).to.equal(bit);
 				bit <<= 1;
 			}
 		});

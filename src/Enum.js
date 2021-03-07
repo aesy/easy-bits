@@ -24,7 +24,7 @@ class Enum {
 	 */
 	constructor(...constants) {
 		const flags = {};
-		let bitValue = 1;
+		let bitValue = 0;
 		let length = 0;
 
 		for (const flag of constants) {
