@@ -54,9 +54,11 @@ configuration.test(options.OPTION2); // true
 const clone = configuration.clone();
 
 // Serialize
-const string = configuration.serialize();
+const serializedOptions = options.serialize();        // 'OPTION1,OPTION2,OPTION3'
+const serializedBitfield = configuration.serialize(); // '010'
 // Deserialize
-const copy = BitFlags.deserialize(string);
+const deserializedOptions = BitFlags.deserialize(serializedOptions);
+const deserializedBitfield = BitField.deserialize(serializedBitfield);
 ```
 BitFields and BitArrays are interchangeable, their APIs are identical. 
 The only difference between them is how many flags they support (BitField is limited to 31 flags) and their performance 
@@ -68,18 +70,16 @@ const Day = new Enum('MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SA
 
 console.log(Day.MONDAY);         // EnumConstant('MONDAY':0)
 console.log(Day.MONDAY.name);    // 'MONDAY'
-console.log(String(Day.MONDAY)); // 'MONDAY'
+console.log(String(Day.MONDAY)); // 'EnumConstant(MONDAY:4)'
 console.log(Day.FRIDAY.ordinal); // 4
 console.log(Number(Day.FRIDAY)); // 4
 
 // Enums are immutable
-Day.MY_OWN_DAY = 1337;
-console.log(Day.MY_OWN_DAY); // still undefined
-Day.MONDAY = 42;
-console.log(Day.MONDAY);     // still EnumConstant('MONDAY':0)
+Day.MY_OWN_DAY = 1337; // TypeError: Cannot add property MY_OWN_DAY, object is not extensible
+Day.MONDAY = 42;       // TypeError: Cannot set property MONDAY of [object Object] which has only a getter
 
 // Enums are iterable
-console.log(Object.keys(Day)); // ['MONDAY', 'TUESDAY' 'WEDNESDAY', 'THURSDAY', ...]
+console.log(Object.keys(Day)); // ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', ...]
 console.log(Day.values());     // [EnumConstant('MONDAY':0), EnumConstant('TUESDAY':1), ...]
 for (let value of Day) {}
 Day.forEach((value, name) => {});
@@ -94,7 +94,7 @@ switch (value) {
 
 console.log(Day.MONDAY.equals(Day.FRIDAY));     // false
 console.log(Day.MONDAY === OtherEnum.CONSTANT); // false
-console.log(Day.MONDAY == OtherEnum.CONSTANT);  // true, if their ordinal values are the same
+console.log(Day.MONDAY == OtherEnum.CONSTANT);  // false
 ```
 
 Note that the examples above uses ECMAScript 2015 features.
