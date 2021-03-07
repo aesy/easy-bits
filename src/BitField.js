@@ -33,8 +33,8 @@ class BitField {
 	 * @public
 	 * @constructor
 	 * @param {Number} [minLength = 1] The minimum length of the bitfield.
-     * @throws {Error} In case length exceeds 31 (consider using BitArray instead if u may reach this limit).
-     * @throws {Error} In case 'minLength' is equals to or smaller than zero.
+	 * @throws {Error} In case length exceeds 31 (consider using BitArray instead if u may reach this limit).
+	 * @throws {Error} In case 'minLength' is equals to or smaller than zero.
 	 */
 	constructor(minLength) {
 		assertTrue(minLength === undefined || minLength > 0,
@@ -327,7 +327,7 @@ class BitField {
 	 * @returns {BitField} A new BitField instance.
 	 */
 	clone() {
-		return new BitField().copy(this);
+		return new BitField(this.minLength).copy(this);
 	}
 
 	equals(other) {

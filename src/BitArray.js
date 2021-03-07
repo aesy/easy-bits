@@ -353,7 +353,7 @@ class BitArray {
 	 * @returns {BitArray} A new BitArray instance.
 	 */
 	clone() {
-		return new BitArray().copy(this);
+		return new BitArray(this.length).copy(this);
 	}
 
 	equals(other) {
