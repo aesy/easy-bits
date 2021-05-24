@@ -14,13 +14,13 @@
 		"JavaScript",
 		"TypeScript"
 	],
-	"homepage": "https://github.com/aesy/Easy-Bits#readme",
+	"homepage": "https://github.com/aesy/easy-bits#readme",
 	"bugs": {
-		"url": "https://github.com/aesy/Easy-Bits/issues"
+		"url": "https://github.com/aesy/easy-bits/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/aesy/Easy-Bits.git"
+		"url": "https://github.com/aesy/easy-bits.git"
 	},
 	"main": "dist/easy-bits.min.js",
 	"types": "typings/easy-bits.d.ts",

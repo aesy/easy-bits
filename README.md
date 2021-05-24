@@ -12,24 +12,24 @@
 [npm-image]: https://img.shields.io/npm/v/easy-bits?style=flat-square 
 [npm-url]: https://www.npmjs.com/package/easy-bits
 
-[github-actions-image]: https://img.shields.io/github/workflow/status/aesy/Easy-Bits/Continous%20Integration?style=flat-square
-[github-actions-url]: https://github.com/aesy/Easy-Bits/actions
+[github-actions-image]: https://img.shields.io/github/workflow/status/aesy/easy-bits/Continous%20Integration?style=flat-square
+[github-actions-url]: https://github.com/aesy/easy-bits/actions
 
-[code-climate-image]: https://img.shields.io/codeclimate/maintainability-percentage/aesy/Easy-Bits?style=flat-square
-[code-climate-url]: https://codeclimate.com/github/aesy/Easy-Bits
+[code-climate-image]: https://img.shields.io/codeclimate/maintainability-percentage/aesy/easy-bits?style=flat-square
+[code-climate-url]: https://codeclimate.com/github/aesy/easy-bits
 
-[coveralls-image]: https://img.shields.io/coveralls/github/aesy/Easy-Bits?style=flat-square
-[coveralls-url]: https://coveralls.io/github/aesy/Easy-Bits?branch=master
+[coveralls-image]: https://img.shields.io/coveralls/github/aesy/easy-bits?style=flat-square
+[coveralls-url]: https://coveralls.io/github/aesy/easy-bits?branch=master
 
 [code-style-image]: https://img.shields.io/badge/code%20style-%20XO-67d5c5?style=flat-square
 [code-style-url]: https://github.com/sindresorhus/xo 
 
-[license-image]: https://img.shields.io/github/license/aesy/Easy-Bits?style=flat-square
-[license-url]: https://github.com/aesy/Easy-Bits/blob/master/LICENSE
+[license-image]: https://img.shields.io/github/license/aesy/easy-bits?style=flat-square
+[license-url]: https://github.com/aesy/easy-bits/blob/master/LICENSE
 
 Enums, BitFlags, BitFields, BitMasks and BitArrays for JavaScript & TypeScript.
 
-### [API Reference](https://aesy.github.io/Easy-Bits/)
+### [API Reference](https://aesy.github.io/easy-bits/)
 
 ## Usage
 #### BitFlags + BitField:
@@ -122,7 +122,7 @@ configuration.off(Direction.NORTH); // ERROR: argument type Direction is not ass
 ## Installation
 From NPM: run `npm install easy-bits --save`.
 
-From GitHub: download [easy-bits.min.js](https://github.com/aesy/Easy-Bits/releases).
+From GitHub: download [easy-bits.min.js](https://github.com/aesy/easy-bits/releases).
 
 #### and then import
 ES2015 style: `import { Enum } from 'easy-bits';`.
@@ -141,7 +141,7 @@ or link in HTML: `<script src="easy-bits.min.js"></script>`.
 | Safari            |          7 and up |
 
 ## Contribute
-Use the [issue tracker](https://github.com/aesy/Easy-Bits/issues) to report bugs or make feature requests. Pull requests are welcome, but it may be a good idea to create an issue to discuss any 
+Use the [issue tracker](https://github.com/aesy/easy-bits/issues) to report bugs or make feature requests. Pull requests are welcome, but it may be a good idea to create an issue to discuss any 
 changes beforehand.
 
 ## License
