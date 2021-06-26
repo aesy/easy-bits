@@ -1,7 +1,7 @@
 import EnumConstant from './EnumConstant';
 
 /**
- * An Enum consists of a set of prefedined constants. These constants are accessible directly on the instance.
+ * An Enum consists of a set of predefined constants. These constants are accessible directly on the instance.
  *
  * @public
  * @class
