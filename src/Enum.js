@@ -34,7 +34,7 @@ class Enum {
 				enumerable: true,
 				get() {
 					return flags[flag];
-				}
+				},
 			});
 
 			bitValue++;
@@ -44,7 +44,7 @@ class Enum {
 		Object.defineProperty(this, 'length', {
 			value: length,
 			writable: false,
-			enumerable: false
+			enumerable: false,
 		});
 
 		Object.freeze(this);
@@ -117,9 +117,9 @@ class Enum {
 
 				return {
 					value,
-					done: index > arr.length
+					done: index > arr.length,
 				};
-			}
+			},
 		};
 	}
 

@@ -46,7 +46,7 @@ class BitFlags {
 				enumerable: true,
 				get() {
 					return flags[flag];
-				}
+				},
 			});
 
 			bitValue <<= 1;
@@ -55,13 +55,13 @@ class BitFlags {
 
 		Object.defineProperty(this, 'NONE', {
 			value: new EnumConstant('NONE', 0),
-			enumerable: false
+			enumerable: false,
 		});
 
 		Object.defineProperty(this, 'length', {
 			value: length,
 			writable: false,
-			enumerable: false
+			enumerable: false,
 		});
 
 		Object.freeze(this);
@@ -134,9 +134,9 @@ class BitFlags {
 
 				return {
 					value,
-					done: index > arr.length
+					done: index > arr.length,
 				};
-			}
+			},
 		};
 	}
 

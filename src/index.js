@@ -7,12 +7,12 @@ export {
 	BitArray,
 	BitField,
 	BitFlags,
-	Enum
+	Enum,
 };
 
 export default {
 	BitArray,
 	BitField,
 	BitFlags,
-	Enum
+	Enum,
 };

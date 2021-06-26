@@ -1,5 +1,5 @@
 {
-	"extends": "xo/esnext",
+	"extends": "xo",
 	"parser": "babel-eslint",
 	"parserOptions": {
 		"ecmaVersion": 6,
