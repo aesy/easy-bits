@@ -23,7 +23,12 @@
 		"url": "https://github.com/aesy/easy-bits.git"
 	},
 	"main": "dist/easy-bits.min.js",
+	"module": "dist/easy-bits.min.mjs",
 	"types": "typings/easy-bits.d.ts",
+	"exports": {
+		"require": "./dist/easy-bits.min.js",
+		"import": "./dist/easy-bits.min.mjs"
+	},
 	"scripts": {
 		"build:dev": "webpack --config ./config/webpack.config.development.js",
 		"build:prod": "npm run build:clean && webpack --config ./config/webpack.config.production.js",
@@ -66,12 +71,12 @@
 		"karma-sourcemap-loader": "^0.3.8",
 		"karma-webpack": "^5.0.0",
 		"mocha": "^6.2.0",
-		"mochapack": "^1.1.2",
+		"mochapack": "^2.1.2",
 		"nyc": "^15.1.0",
 		"rimraf": "^3.0.2",
-		"uglifyjs-webpack-plugin": "^2.2.0",
-		"webpack": "^4.46.0",
-		"webpack-cli": "^4.5.0",
-		"webpack-merge": "^5.7.3"
+		"terser-webpack-plugin": "^5.1.4",
+		"webpack": "^5.40.0",
+		"webpack-cli": "^4.7.2",
+		"webpack-merge": "^5.8.0"
 	}
 }

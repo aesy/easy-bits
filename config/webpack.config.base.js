@@ -1,18 +1,15 @@
 const webpack = require('webpack');
+const { merge } = require('webpack-merge');
 const path = require('path');
 
-module.exports = {
+const base = {
 	context: path.resolve(__dirname, '..'),
 	entry: {
 		'easy-bits.min': './src/index.js'
 	},
-	target: 'web',
 	output: {
 		path: path.resolve(__dirname, '../dist/'),
-		publicPath: '/',
-		filename: '[name].js',
-		libraryTarget: 'umd',
-		globalObject: 'this'
+		publicPath: '/'
 	},
 	resolve: {
 		extensions: ['.js']
@@ -49,4 +46,27 @@ module.exports = {
 	performance: {
 		hints: false
 	}
+};
+
+module.exports = {
+	umd: merge(base, {
+		output: {
+			filename: '[name].js',
+			library: {
+				type: 'umd'
+			},
+			globalObject: 'this'
+		}
+	}),
+	esm: merge(base, {
+		output: {
+			filename: '[name].mjs',
+			library: {
+				type: 'module'
+			}
+		},
+		experiments: {
+			outputModule: true
+		}
+	})
 };

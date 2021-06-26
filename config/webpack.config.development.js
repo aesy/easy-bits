@@ -1,11 +1,12 @@
-const config = require('./webpack.config.base.js');
+const base = require('./webpack.config.base.js');
 const { merge } = require('webpack-merge');
 
-module.exports = merge(config, {
+const dev = {
 	mode: 'development',
-	output: {
-		devtoolModuleFilenameTemplate: '[absolute-resource-path]',
-		devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
-	},
 	devtool: 'inline-source-map'
-});
+};
+
+module.exports = [
+	merge(base.umd, dev),
+	merge(base.esm, dev)
+];

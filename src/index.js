@@ -9,3 +9,10 @@ export {
 	BitFlags,
 	Enum
 };
+
+export default {
+	BitArray,
+	BitField,
+	BitFlags,
+	Enum
+};

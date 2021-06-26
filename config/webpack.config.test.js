@@ -1,9 +1,10 @@
 const path = require('path');
-const config = require('./webpack.config.development.js');
+const base = require('./webpack.config.base.js');
 const { merge } = require('webpack-merge');
 
-module.exports = merge(config, {
-	target: 'node',
+const test = {
+	mode: 'development',
+	devtool: 'inline-source-map',
 	module: {
 		rules: [{
 			test: /\.(js)$/,
@@ -17,4 +18,6 @@ module.exports = merge(config, {
 			}]
 		}]
 	}
-});
+};
+
+module.exports = merge(base.umd, test);

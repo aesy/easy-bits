@@ -1,20 +1,16 @@
-const config = require('./webpack.config.base.js');
+const base = require('./webpack.config.base.js');
 const { merge } = require('webpack-merge');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
-module.exports = merge(config, {
+const prod = {
 	mode: 'production',
 	optimization: {
-		minimizer: [
-			new UglifyJsPlugin({
-				include: /\.min\.js$/,
-				sourceMap: false,
-				uglifyOptions: {
-					compress: {
-						drop_console: true
-					}
-				}
-			})
-		]
+		minimize: true,
+		minimizer: [new TerserPlugin()]
 	}
-});
+};
+
+module.exports = [
+	merge(base.umd, prod),
+	merge(base.esm, prod)
+];

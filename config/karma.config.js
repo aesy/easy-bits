@@ -1,11 +1,11 @@
 require('dotenv').config();
 
-module.exports = (config) => {
+module.exports = config => {
 	config.set({
 		basePath: '../',
-		browsers: ['ChromeHeadless', 'FirefoxHeadless'],
+		browsers: ['FirefoxHeadless'],
 		customLaunchers: {
-			'FirefoxHeadless': {
+			FirefoxHeadless: {
 				base: 'Firefox',
 				flags: [
 					'-headless'
@@ -19,6 +19,6 @@ module.exports = (config) => {
 		},
 		reporters: ['mocha'],
 		singleRun: true,
-		webpack: require('./webpack.config.production')
+		webpack: require('./webpack.config.test')
 	});
 };
