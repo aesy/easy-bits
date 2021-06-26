@@ -11,7 +11,8 @@ module.exports = {
 		path: path.resolve(__dirname, '../dist/'),
 		publicPath: '/',
 		filename: '[name].js',
-		libraryTarget: 'umd'
+		libraryTarget: 'umd',
+		globalObject: 'this'
 	},
 	resolve: {
 		extensions: ['.js']
