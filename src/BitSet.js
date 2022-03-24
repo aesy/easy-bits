@@ -17,6 +17,7 @@
 /**
  * The index of the highest set bit plus one or the minimum set length, whichever is higher.
  *
+ * @readonly
  * @member {Number}
  * @name BitSet#length
  */
@@ -237,12 +238,20 @@
  */
 
 /**
+ * Produces a new bitset instance equal to this.
+ *
+ * @function
+ * @name BitSet#clone
+ * @returns {BitSet}
+ */
+
+/**
  * Checks whether this bitset is equal to another bitsetlike value or instance. They are equal if
  * if their set bits match up.
  *
  * @function
  * @name BitSet#equals
- * @param {BitMask} other
+ * @param {BitSetLike} other
  * @returns {Boolean}
  */
 

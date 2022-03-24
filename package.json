@@ -1,6 +1,6 @@
 {
 	"name": "easy-bits",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"author": "aesy",
 	"license": "MIT",
 	"description": "Enums, BitFlags, BitFields, BitMasks and BitArrays for JavaScript & TypeScript",

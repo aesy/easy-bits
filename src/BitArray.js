@@ -346,12 +346,6 @@ class BitArray {
 		return BitArray.fromArray(array.map(Number));
 	}
 
-	/**
-	 * Produces a new BitArray instance equal to this.
-	 *
-	 * @public
-	 * @returns {BitArray} A new BitArray instance.
-	 */
 	clone() {
 		return new BitArray(this.length).copy(this);
 	}

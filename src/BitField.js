@@ -320,12 +320,6 @@ class BitField {
 		return BitField.fromArray(array.map(Number));
 	}
 
-	/**
-	 * Produces a new BitField instance equal to this.
-	 *
-	 * @public
-	 * @returns {BitField} A new BitField instance.
-	 */
 	clone() {
 		return new BitField(this.minLength).copy(this);
 	}
