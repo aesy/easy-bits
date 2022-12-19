@@ -12,7 +12,7 @@
 [npm-image]: https://img.shields.io/npm/v/easy-bits?style=flat-square 
 [npm-url]: https://www.npmjs.com/package/easy-bits
 
-[github-actions-image]: https://img.shields.io/github/workflow/status/aesy/easy-bits/Continous%20Integration?style=flat-square
+[github-actions-image]: https://img.shields.io/github/actions/workflow/status/aesy/easy-bits/ci.yml?branch=master&style=flat-square
 [github-actions-url]: https://github.com/aesy/easy-bits/actions
 
 [code-climate-image]: https://img.shields.io/codeclimate/maintainability-percentage/aesy/easy-bits?style=flat-square
