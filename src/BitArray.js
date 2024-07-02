@@ -165,7 +165,6 @@ class BitArray {
 	}
 
 	testAt(value, index) {
-
 		if (index > this.length) {
 			return Boolean(value) === false;
 		}
