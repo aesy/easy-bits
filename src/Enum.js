@@ -1,4 +1,5 @@
 import EnumConstant from './EnumConstant';
+import EnumLike from './EnumLike';
 
 /**
  * An Enum consists of a set of predefined constants. These constants are accessible directly on the instance.

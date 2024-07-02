@@ -1,5 +1,3 @@
-import { assertTrue, isInteger } from './util';
-
 /**
  * A {@link BitSet} implementation with no limit due to bits being stored in an array. Also known as bit set, bit map
  * or bit vector. This implementation will never throw out of bounds errors.
@@ -24,8 +22,9 @@ class BitArray {
 	 * @throws {Error} In case 'minLength' is equals to or smaller than zero.
 	 */
 	constructor(minLength) {
-		assertTrue(minLength === undefined || minLength > 0,
-			'Illegal argument: parameter \'minLength\' must be larger than 0');
+		if (minLength !== undefined && minLength <= 0) {
+			throw Error('Illegal argument: parameter \'minLength\' must be larger than 0');
+		}
 
 		minLength = minLength || 1;
 
@@ -118,15 +117,13 @@ class BitArray {
 	}
 
 	get(index) {
-		assertTrue(isInteger(index), 'Illegal argument: parameter \'index\' is not an integer');
-
 		return this.value[index] || false;
 	}
 
 	getRange(from, to) {
-		assertTrue(isInteger(from), 'Illegal argument: parameter \'from\' is not an integer');
-		assertTrue(isInteger(to), 'Illegal argument: parameter \'to\' is not an integer');
-		assertTrue(to > from, 'Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
+		if (to <= from) {
+			throw Error('Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
+		}
 
 		const length = to - from;
 		const bitArray = new BitArray();
@@ -168,7 +165,6 @@ class BitArray {
 	}
 
 	testAt(value, index) {
-		assertTrue(isInteger(index), 'Illegal argument: parameter \'index\' is not an integer');
 
 		if (index > this.length) {
 			return Boolean(value) === false;
@@ -212,8 +208,6 @@ class BitArray {
 	}
 
 	setAt(value, index) {
-		assertTrue(isInteger(index), 'Illegal argument: parameter \'index\' is not an integer');
-
 		while (index >= this.length) {
 			this.value.push(false);
 		}
@@ -224,9 +218,9 @@ class BitArray {
 	}
 
 	setRange(value, from, to) {
-		assertTrue(isInteger(from), 'Illegal argument: parameter \'from\' is not an integer');
-		assertTrue(isInteger(to), 'Illegal argument: parameter \'to\' is not an integer');
-		assertTrue(to > from, 'Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
+		if (to <= from) {
+			throw Error('Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
+		}
 
 		for (let i = from; i < to; i++) {
 			this.setAt(value, i);
@@ -258,8 +252,6 @@ class BitArray {
 	}
 
 	flipAt(index) {
-		assertTrue(isInteger(index), 'Illegal argument: parameter \'index\' is not an integer');
-
 		while (index >= this.length) {
 			this.value.push(false);
 		}
@@ -270,9 +262,9 @@ class BitArray {
 	}
 
 	flipRange(from, to) {
-		assertTrue(isInteger(from), 'Illegal argument: parameter \'from\' is not an integer');
-		assertTrue(isInteger(to), 'Illegal argument: parameter \'to\' is not an integer');
-		assertTrue(to > from, 'Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
+		if (to <= from) {
+			throw Error('Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
+		}
 
 		for (let i = from; i < to; i++) {
 			this.flipAt(i);
@@ -337,13 +329,13 @@ class BitArray {
 	 * @returns {BitArray} A new instance.
 	 */
 	static deserialize(input) {
-		const array = input.split('');
+		const array = input.split('').map(Number);
 
 		if (array.some(isNaN)) {
 			throw new Error('Failed to deserialize input');
 		}
 
-		return BitArray.fromArray(array.map(Number));
+		return BitArray.fromArray(array);
 	}
 
 	clone() {

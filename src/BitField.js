@@ -1,5 +1,3 @@
-import { assertTrue, isInteger, withinRange } from './util';
-
 /**
  * A {@link BitSet} implementation limited to 31 bits due to bits being stored in a Number type.
  * This implementation is about 25% faster than a BitArray.
@@ -37,8 +35,9 @@ class BitField {
 	 * @throws {Error} In case 'minLength' is equals to or smaller than zero.
 	 */
 	constructor(minLength) {
-		assertTrue(minLength === undefined || minLength > 0,
-			'Illegal argument: parameter \'minLength\' must be larger than 0');
+		if (minLength !== undefined && minLength <= 0) {
+			throw Error('Illegal argument: parameter \'minLength\' must be larger than 0');
+		}
 
 		this.minLength = minLength || 1;
 
@@ -143,18 +142,25 @@ class BitField {
 	}
 
 	get(index) {
-		assertTrue(isInteger(index), 'Illegal argument: parameter \'index\' is not an integer');
-		assertTrue(withinRange(index, 0, 31), 'Illegal argument: parameter \'index\' is out of bounds');
+		if (index < 0 || index > 31) {
+			throw Error('Illegal argument: parameter \'index\' is out of bounds');
+		}
 
 		return Boolean((this.value >> index) & 1);
 	}
 
 	getRange(from, to) {
-		assertTrue(isInteger(from), 'Illegal argument: parameter \'from\' is not an integer');
-		assertTrue(isInteger(to), 'Illegal argument: parameter \'to\' is not an integer');
-		assertTrue(withinRange(from, 0, 31), 'Illegal argument: parameter \'from\' is out of bounds');
-		assertTrue(withinRange(to, 0, 31), 'Illegal argument: parameter \'to\' is out of bounds');
-		assertTrue(to > from, 'Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
+		if (from < 0 || from > 31) {
+			throw Error('Illegal argument: parameter \'from\' is out of bounds');
+		}
+
+		if (to < 0 || to > 31) {
+			throw Error('Illegal argument: parameter \'to\' is out of bounds');
+		}
+
+		if (to <= from) {
+			throw Error('Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
+		}
 
 		const length = to - from;
 		const mask = (1 << length) - 1;
@@ -177,8 +183,9 @@ class BitField {
 	}
 
 	testAt(value, index) {
-		assertTrue(isInteger(index), 'Illegal argument: parameter \'index\' is not an integer');
-		assertTrue(withinRange(index, 0, 31), 'Illegal argument: parameter \'index\' is out of bounds');
+		if (index < 0 || index > 31) {
+			throw Error('Illegal argument: parameter \'index\' is out of bounds');
+		}
 
 		return this.get(index) === Boolean(value);
 	}
@@ -220,8 +227,9 @@ class BitField {
 	}
 
 	setAt(value, index) {
-		assertTrue(isInteger(index), 'Illegal argument: parameter \'index\' is not an integer');
-		assertTrue(withinRange(index, 0, 31), 'Illegal argument: parameter \'index\' is out of bounds');
+		if (index < 0 || index > 31) {
+			throw Error('Illegal argument: parameter \'index\' is out of bounds');
+		}
 
 		const mask = 1 << index;
 
@@ -229,11 +237,17 @@ class BitField {
 	}
 
 	setRange(value, from, to) {
-		assertTrue(isInteger(from), 'Illegal argument: parameter \'from\' is not an integer');
-		assertTrue(isInteger(to), 'Illegal argument: parameter \'to\' is not an integer');
-		assertTrue(withinRange(from, 0, 31), 'Illegal argument: parameter \'from\' is out of bounds');
-		assertTrue(withinRange(to, 0, 31), 'Illegal argument: parameter \'to\' is out of bounds');
-		assertTrue(to > from, 'Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
+		if (from < 0 || from > 31) {
+			throw Error('Illegal argument: parameter \'from\' is out of bounds');
+		}
+
+		if (to < 0 || to > 31) {
+			throw Error('Illegal argument: parameter \'to\' is out of bounds');
+		}
+
+		if (to <= from) {
+			throw Error('Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
+		}
 
 		let mask = (1 << (to - from)) - 1;
 
@@ -257,8 +271,9 @@ class BitField {
 	}
 
 	flipAt(index) {
-		assertTrue(isInteger(index), 'Illegal argument: parameter \'index\' is not an integer');
-		assertTrue(withinRange(index, 0, 31), 'Illegal argument: parameter \'index\' is out of bounds');
+		if (index < 0 || index > 31) {
+			throw Error('Illegal argument: parameter \'index\' is out of bounds');
+		}
 
 		const mask = 1 << index;
 
@@ -266,11 +281,17 @@ class BitField {
 	}
 
 	flipRange(from, to) {
-		assertTrue(isInteger(from), 'Illegal argument: parameter \'from\' is not an integer');
-		assertTrue(isInteger(to), 'Illegal argument: parameter \'to\' is not an integer');
-		assertTrue(withinRange(from, 0, 31), 'Illegal argument: parameter \'from\' is out of bounds');
-		assertTrue(withinRange(to, 0, 31), 'Illegal argument: parameter \'to\' is out of bounds');
-		assertTrue(to > from, 'Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
+		if (from < 0 || from > 31) {
+			throw Error('Illegal argument: parameter \'from\' is out of bounds');
+		}
+
+		if (to < 0 || to > 31) {
+			throw Error('Illegal argument: parameter \'to\' is out of bounds');
+		}
+
+		if (to <= from) {
+			throw Error('Illegal argument: parameter \'to\' must be larger than parameter \'from\'');
+		}
 
 		let mask = (1 << (to - from)) - 1;
 

@@ -1,6 +1,7 @@
 import BitArray from './BitArray';
 import BitField from './BitField';
 import EnumConstant from './EnumConstant';
+import EnumLike from './EnumLike';
 
 /**
  * A BitFlags instance consists of a set of predefined values, each representing a binary digit that acts as a flag

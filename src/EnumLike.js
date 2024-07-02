@@ -7,6 +7,8 @@
  */
 
 /**
+ * The amount of values/constants in this instance.
+ *
  * @readonly
  * @member {Number}
  * @name EnumLike#length
