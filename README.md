@@ -70,7 +70,7 @@ const Day = new Enum('MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SA
 
 console.log(Day.MONDAY);         // EnumConstant('MONDAY':0)
 console.log(Day.MONDAY.name);    // 'MONDAY'
-console.log(String(Day.MONDAY)); // 'EnumConstant(MONDAY:4)'
+console.log(String(Day.MONDAY)); // 'EnumConstant(MONDAY:0)'
 console.log(Day.FRIDAY.ordinal); // 4
 console.log(Number(Day.FRIDAY)); // 4
 
@@ -132,7 +132,7 @@ or link in HTML: `<script src="easy-bits.min.js"></script>`.
 ## Support
 
 | Environment       | Supported Version |
-| ----------------- | -----------------:|
+|-------------------|------------------:|
 | Node              |          8 and up |
 | Chrome            |         26 and up |
 | Firefox           |          4 and up |
